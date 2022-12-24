@@ -1,0 +1,17 @@
+.pet-card-img {
+     width: 15rem;
+     border-radius: 15px;
+     
+}
+
+.PetCard {
+     border: solid 1px black;
+     display: flex;
+     justify-content: space-between;
+
+}
+
+.pet-img-modal {
+          width: 15rem;
+     border-radius: 15px;
+}

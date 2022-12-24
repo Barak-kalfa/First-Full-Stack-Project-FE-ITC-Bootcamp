@@ -6,12 +6,25 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import PetPage from "../PETS/PetPage/PetPage";
 import { useEffect, useState, createContext } from "react";
 import axios from "axios";
+import "./App.css"
 
 export const AppContext = createContext()
 
 function App() {
      console.log('App render');
      const [petsList, setPetsList] = useState([])
+     const [currentUser, setCurrentUser] = useState()
+
+     useEffect(()=>{
+          
+     setCurrentUser({
+          userId: "1",
+          firstName: "Example Leanne",
+          lastName: " ExampleGraham",
+          email: "Example@april.biz",
+          phone: "1-770-Example",
+     });
+     },[])
 
      const addPet = (newPet)=>{
           const newPetsList = [...petsList, newPet];
@@ -31,8 +44,8 @@ function App() {
     
      },[])
      return (
-          <div>
-               <AppContext.Provider value={{ petsList, addPet }}>
+          <div className="App">
+               <AppContext.Provider value={{ petsList, addPet, currentUser }}>
                     <BrowserRouter>
                          <Routes>
                               <Route path="/" element={<LandingPage />} />

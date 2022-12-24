@@ -7,7 +7,8 @@ function UserCard({ user }) {
      return (
           <div className="mb-3">
                <div onClick={() => setShow(true)}>
-                    <span className="me-4">{user.name}</span>
+                    <span className="me-4">{user.firstName}</span>
+                    <span className="me-4">{user.lastName}</span>
                     <span className="me-4">{user.username}</span>
                     <span className="me-4">{user.email}</span>
                     <span>{user.phone}</span>
@@ -19,7 +20,7 @@ function UserCard({ user }) {
                     aria-labelledby="example-custom-modal-styling-title"
                >
                     <Modal.Body>
-                         <UserForm user={user}/>
+                         <UserForm user={user} />
                     </Modal.Body>
                </Modal>
           </div>

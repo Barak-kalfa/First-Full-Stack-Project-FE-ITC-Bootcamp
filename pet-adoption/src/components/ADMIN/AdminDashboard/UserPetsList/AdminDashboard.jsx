@@ -1,7 +1,6 @@
 import PetList from '../../../PetList/PetList'
 import UsersList from '../../UsersList/UsersList'
 import AddPet from '../../AddPet/AddPet'
-import AddUser from '../../AddUser/AddUser'
 import axios from "axios";
 import {useEffect, useState } from "react";
 
@@ -20,6 +19,10 @@ function AdminDashboard() {
         }
      };
 
+          const updateUser = (updatedUser) => {
+         
+          };
+
      useEffect(()=>{
       getUsers()
   
@@ -28,7 +31,6 @@ function AdminDashboard() {
   return (
        <div>
             <AddPet />
-            <AddUser />
             <PetList/>
             <UsersList usersList ={usersList}/>
        </div>

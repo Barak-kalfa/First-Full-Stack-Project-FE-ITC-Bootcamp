@@ -2,6 +2,7 @@ import { Form, Button, Card, Alert, Modal } from "react-bootstrap";
 import { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
+import { registerUser } from "../../../Modules/userModules"; 
 
 function SignUpModal() {
      const emailRef = useRef();
@@ -33,9 +34,9 @@ function SignUpModal() {
                             phone: phoneRef.current.value,
                             email: emailRef.current.value,
                             password: passwordRef.current.value,
-                            id: uuidv4(),
+                            registrationDate: new Date()
                        };
-                       console.log(user);
+                       registerUser(user)
                  navigate("/userhome");
             } catch (error) {
                  console.log(error.message);
