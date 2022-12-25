@@ -2,14 +2,15 @@ import axios from "axios";
 import { useState, useContext, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { EditPet } from "../../../Modules/petsModules";
 import { AppContext } from "../../App/App";
+import { PetContext } from "../../PETS/PetCard/PetCard";
 
+function EditPetForm() {
+     const { petsList } = useContext(AppContext);
+     const { pet } = useContext(PetContext);
 
-function AddPetForm({pet}) {
-
-     const {addPet} = useContext(AppContext)
-
-     const [petInfo, setPetInfo] = useState(     {
+     const [petInfo, setPetInfo] = useState({
           type: "",
           name: "",
           adoptionStatus: "",
@@ -23,37 +24,30 @@ function AddPetForm({pet}) {
           breed: "",
      });
 
-     useEffect(()=>{
-          console.log(pet)
-     })
-     const [petPicture, setPetPicture] = useState()
+     const handlePetInfo = (e) => {
+          setPetInfo({ ...petInfo, [e.target.name]: e.target.value });
+     };
 
-     const handlePetInfo = (e) =>{
-          setPetInfo({...petInfo, [e.target.name]: e.target.value})
-     }
-     const handlePetPicture = (e)=>{
-          console.log(e.target.files[0]);
-          
-     }
-
-     const handleSubmit = async (e) =>{
-          e.preventDefault()
-         try {
-          const res = await axios.post("http://localhost:8080/pets", petInfo);
-          addPet(res.data)
-          console.log(res.data);
-         }catch(err){
-          console.log(err.message);
-         }
-     }
+     const handleSubmit = async (e) => {
+          e.preventDefault();
+          try {
+               // const res = await axios.post(
+               //      "http://localhost:8080/pets/edit",
+               //      petInfo
+               // );
+               EditPet(petInfo);
+          } catch (err) {
+               console.log(err.message);
+          }
+     };
 
      return (
           <Form onSubmit={handleSubmit}>
                <Form.Select
                     aria-label="Type "
-                    placeholder="Enter Name..."
+                    placeholder={pet.type}
                     onChange={handlePetInfo}
-                    value={petInfo.type}
+                    value={pet.type}
                     name="type"
                >
                     <option>Type?</option>
@@ -61,51 +55,51 @@ function AddPetForm({pet}) {
                     <option value="cat">Cat</option>
                </Form.Select>
                <Form.Control
-                    placeholder="Enter Name..."
+                    placeholder={pet.name}
                     onChange={handlePetInfo}
-                    value={petInfo.name}
+                    value={pet.name}
                     className="textInput"
                     name="name"
                />
                <Form.Control
                     placeholder="Enter Adoption Status..."
                     onChange={handlePetInfo}
-                    value={petInfo.adoptionStatus}
+                    value={pet.adoptionStatus}
                     className="textInput"
                     name="adoptionStatus"
                />
                <Form.Control
                     placeholder="Enter Height..."
                     onChange={handlePetInfo}
-                    value={petInfo.height}
+                    value={pet.height}
                     className="textInput"
                     name="height"
                />
                <Form.Control
                     placeholder="Enter Weight..."
                     onChange={handlePetInfo}
-                    value={petInfo.weight}
+                    value={pet.weight}
                     className="textInput"
                     name="weight"
                />
                <Form.Control
                     placeholder="Enter color..."
                     onChange={handlePetInfo}
-                    value={petInfo.color}
+                    value={pet.color}
                     className="textInput"
                     name="color"
                />
                <Form.Control
                     placeholder="Enter Bio..."
                     onChange={handlePetInfo}
-                    value={petInfo.bio}
+                    value={pet.bio}
                     className="textInput"
                     name="bio"
                />
                <Form.Select
                     aria-label="Hypoallergenic"
                     onChange={handlePetInfo}
-                    value={petInfo.hypoallergnic}
+                    value={pet.hypoallergnic}
                     name="hypoallergnic"
                >
                     <option>Is Hypoallergenic ?</option>
@@ -116,21 +110,21 @@ function AddPetForm({pet}) {
                <Form.Control
                     placeholder="Any Dietary Restrictions?"
                     onChange={handlePetInfo}
-                    value={petInfo.dietery}
+                    value={pet.dietery}
                     className="textInput"
                     name="dietery"
                />
                <Form.Control
                     placeholder="Enter breed ..."
                     onChange={handlePetInfo}
-                    value={petInfo.breed}
+                    value={pet.breed}
                     className="textInput"
                     name="breed"
                />
                <input
                     type="file"
                     value={petInfo.picture}
-                    onChange={handlePetPicture}
+                    onChange={handlePetInfo}
                     name="picture"
                />
                <Button variant="primary" type="submit">
@@ -140,4 +134,4 @@ function AddPetForm({pet}) {
      );
 }
 
-export default AddPetForm;
+export default EditPetForm;

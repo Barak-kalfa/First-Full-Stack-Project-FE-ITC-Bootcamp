@@ -6,7 +6,6 @@ function UserForm({ user }) {
 
      const handleUserInfo = (e) => {
           setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
-          console.log(userInfo);
      };
 
      // const handleSubmit = async (e) => {

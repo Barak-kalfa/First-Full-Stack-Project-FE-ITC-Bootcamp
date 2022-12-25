@@ -2,13 +2,14 @@ import React, { useContext, useState } from "react";
 import { Form, Button, Modal } from "react-bootstrap";
 import { PetContext } from "./PetCard";
 import "../Pets.css"
+import AddPetForm from "../../ADMIN/AddPet/AddPetForm";
 
-function PetCardModal({ petImg}) {
+function PetCardModal() {
      
        const [show, setShow] = useState(false);
        const handleClose = () => setShow(false);
        const handleShow = () => setShow(true);
-     const {pet} = useContext(PetContext)
+       const {pet} = useContext(PetContext)
      return (
           <>
                <Button variant="primary" onClick={handleShow}>

@@ -18,11 +18,12 @@ function App() {
      useEffect(()=>{
           
      setCurrentUser({
-          userId: "1",
+          userId: "10",
           firstName: "Example Leanne",
           lastName: " ExampleGraham",
           email: "Example@april.biz",
           phone: "1-770-Example",
+          wishList: []
      });
      },[])
 
@@ -39,13 +40,22 @@ function App() {
                console.log(err.message);
           }
      }
+
      useEffect(()=>{
           getPetsList()
     
      },[])
      return (
           <div className="App">
-               <AppContext.Provider value={{ petsList, addPet, currentUser }}>
+               <AppContext.Provider
+                    value={{
+                         petsList,
+                         addPet,
+                         currentUser,
+                         setPetsList,
+                         setCurrentUser,
+                    }}
+               >
                     <BrowserRouter>
                          <Routes>
                               <Route path="/" element={<LandingPage />} />
