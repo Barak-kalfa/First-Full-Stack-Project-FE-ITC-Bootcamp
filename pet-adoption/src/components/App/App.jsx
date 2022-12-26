@@ -3,7 +3,7 @@ import SearchPage from "../PAGES/SearchPage/SearchPage";
 import AdminHome from "../PAGES/AdminHome/AdminHome";
 import UserHome from "../PAGES/UserHome/UserHome";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import PetPage from "../PETS/PetPage/PetPage";
+// import PetPage from "../PETS/PetPage/PetPage";
 import { useEffect, useState, createContext } from "react";
 import axios from "axios";
 import "./App.css"
@@ -66,7 +66,7 @@ function App() {
                                    element={<AdminHome />}
                               />
                               <Route path="/userhome" element={<UserHome />} />
-                              <Route path="/petpage" element={<PetPage />} />
+                              {/* <Route path="/petpage" element={<PetPage />} /> */}
                          </Routes>
                     </BrowserRouter>
                </AppContext.Provider>

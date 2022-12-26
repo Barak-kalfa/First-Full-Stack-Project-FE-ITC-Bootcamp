@@ -17,7 +17,7 @@ function UserCard({ user }) {
                     show={show}
                     onHide={() => setShow(false)}
                     dialogClassName="modal-90w"
-                    aria-labelledby="example-custom-modal-styling-title"
+                    aria-labelledby="user-from"
                >
                     <Modal.Body>
                          <UserForm user={user} />

@@ -1,10 +1,16 @@
-import React from 'react'
 
-function SearchBar() {
-  return (
-    <div>SearchBar</div>
-    
-  )
+
+function SearchBar({ searchPet, handleSearch, searchInput }) {
+     return (
+          <div>
+               <input
+                    type="text"
+                    placeholder="Search Pet"
+                    onChange={handleSearch}
+                    value={searchInput}
+               />
+          </div>
+     );
 }
 
 export default SearchBar

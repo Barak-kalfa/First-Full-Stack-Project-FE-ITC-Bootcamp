@@ -9,20 +9,7 @@ import { PetContext } from "../../PETS/PetCard/PetCard";
 function EditPetForm() {
      const { petsList } = useContext(AppContext);
      const { pet } = useContext(PetContext);
-
-     const [petInfo, setPetInfo] = useState({
-          type: "",
-          name: "",
-          adoptionStatus: "",
-          picture: "",
-          height: "",
-          weight: "",
-          color: "",
-          bio: "",
-          hypoallergnic: false,
-          dietery: "",
-          breed: "",
-     });
+     const [petInfo, setPetInfo] = useState(pet);
 
      const handlePetInfo = (e) => {
           setPetInfo({ ...petInfo, [e.target.name]: e.target.value });
