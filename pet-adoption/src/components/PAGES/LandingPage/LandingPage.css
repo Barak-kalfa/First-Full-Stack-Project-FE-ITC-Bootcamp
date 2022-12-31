@@ -1,3 +1,42 @@
-.landing-page{
-     height: 100vh;
+.LandingPage {
+     display: flex;
+     flex-direction: column;
+     border: 3px solid black;
+     width: 100%;
+     justify-content: center;
+     align-items: center;
+     background-image: url(https://images.dog.ceo/breeds/boxer/n02108089_5423.jpg);
+     background-repeat: no-repeat;
+     background-position: center;
+     background-size: cover;
+}
+
+.bar{
+     background-color: black;
+     height: 6%;
+     width: 100%;
+     top:0;
+     display:block;
+     top: 0;
+
+}
+
+.title {
+     color: white;
+     font-size: 5rem;
+     border: 10px solid white;
+     margin-top: 1rem;
+     border-radius: 15px;
+     padding: 1rem;
+}
+
+.subtitle {
+     color: white;
+     font-size: 2rem;
+     font-weight: bolder;
+}
+
+.login{
+     margin-right: 3rem;
+
 }

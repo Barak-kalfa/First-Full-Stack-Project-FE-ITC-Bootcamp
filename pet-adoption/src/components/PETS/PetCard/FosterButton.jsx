@@ -1,14 +1,14 @@
 import axios from "axios";
 import { useContext } from "react";
 import Button from "react-bootstrap/Button";
-import { updatePetsList } from "../../../Modules/petsModules";
+import { updatePetsList } from "../../../Models/petsModels";
 import { AppContext } from "../../App/App";
 import "../Pets.css";
 import { PetContext } from "./PetCard";
 
 function FosterButton() {
      const { currentUser, petsList, setPetsList } = useContext(AppContext);
-     const { pet, setUseButton } = useContext(PetContext);
+     const { pet, setUseButton, setPetChange, petChange } = useContext(PetContext);
 
      const fosterPet = async () => {
           const petUserId = {
@@ -16,7 +16,7 @@ function FosterButton() {
                userId: currentUser.userId,
           };
           try {
-               const res = await axios.post(
+               const res = await axios.put(
                     "http://localhost:8080/pets/foster",
                     petUserId
                );
@@ -30,6 +30,7 @@ function FosterButton() {
                console.log(newList);
                setPetsList(newList);
                setUseButton((current) => !current);
+               setPetChange(!petChange)
           } catch (err) {
                console.log(err.message);
           }

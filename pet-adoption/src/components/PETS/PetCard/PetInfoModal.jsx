@@ -4,7 +4,7 @@ import { PetContext } from "./PetCard";
 import "../Pets.css"
 import AddPetForm from "../../ADMIN/AddPet/AddPetForm";
 
-function PetCardModal() {
+function PetInfoModal() {
      
        const [show, setShow] = useState(false);
        const handleClose = () => setShow(false);
@@ -42,4 +42,4 @@ function PetCardModal() {
      );
 }
 
-export default PetCardModal;
+export default PetInfoModal;

@@ -6,10 +6,9 @@ import { AppContext } from "../../App/App";
 
 
 function AddPetForm({pet}) {
-
-     const {addPet} = useContext(AppContext)
-
-     const [petInfo, setPetInfo] = useState(     {
+     const { addPet } = useContext(AppContext);
+     //https://images.dog.ceo/breeds/bluetick/n02088632_1173.jpg
+     const [petInfo, setPetInfo] = useState({
           type: "",
           name: "",
           adoptionStatus: "",
@@ -18,34 +17,38 @@ function AddPetForm({pet}) {
           weight: "",
           color: "",
           bio: "",
-          hypoallergnic: false,
-          dietery: "",
+          hypoallerganic: false,
+          dietary: "",
           breed: "",
      });
 
-     useEffect(()=>{
-          console.log(pet)
-     })
-     const [petPicture, setPetPicture] = useState()
+     useEffect(() => {
+          console.log(petInfo);
+     });
 
-     const handlePetInfo = (e) =>{
-          setPetInfo({...petInfo, [e.target.name]: e.target.value})
-     }
-     const handlePetPicture = (e)=>{
-          console.log(e.target.files[0]);
-          
-     }
+     const [petPicture, setPetPicture] = useState("");
 
-     const handleSubmit = async (e) =>{
-          e.preventDefault()
-         try {
-          const res = await axios.post("http://localhost:8080/pets", petInfo);
-          addPet(res.data)
-          console.log(res.data);
-         }catch(err){
-          console.log(err.message);
-         }
-     }
+     const handlePetInfo = (e) => {
+          setPetInfo({ ...petInfo, [e.target.name]: e.target.value });
+     };
+     // const handlePetPicture = (e)=>{
+     //      console.log(e.target.files[0]);
+
+     // }
+
+     const handleSubmit = async (e) => {
+          e.preventDefault();
+          try {
+               const res = await axios.post(
+                    "http://localhost:8080/pets",
+                    petInfo
+               );
+               addPet(res.data);
+               console.log("xxx|", res.data);
+          } catch (err) {
+               console.log(err.message);
+          }
+     };
 
      return (
           <Form onSubmit={handleSubmit}>
@@ -105,20 +108,20 @@ function AddPetForm({pet}) {
                <Form.Select
                     aria-label="Hypoallergenic"
                     onChange={handlePetInfo}
-                    value={petInfo.hypoallergnic}
-                    name="hypoallergnic"
+                    value={petInfo.hypoallerganic}
+                    name="hypoallerganic"
                >
                     <option>Is Hypoallergenic ?</option>
-                    <option value={true}>Yes</option>
-                    <option value={false}>No</option>
+                    <option value={1}>Yes</option>
+                    <option value={0}>No</option>
                </Form.Select>
 
                <Form.Control
                     placeholder="Any Dietary Restrictions?"
                     onChange={handlePetInfo}
-                    value={petInfo.dietery}
+                    value={petInfo.dietary}
                     className="textInput"
-                    name="dietery"
+                    name="dietary"
                />
                <Form.Control
                     placeholder="Enter breed ..."
@@ -127,12 +130,12 @@ function AddPetForm({pet}) {
                     className="textInput"
                     name="breed"
                />
-               <input
+               {/* <input
                     type="file"
-                    value={petInfo.picture}
+                    value="https://images.dog.ceo/breeds/bluetick/n02088632_1173.jpg"
                     onChange={handlePetPicture}
                     name="picture"
-               />
+               /> */}
                <Button variant="primary" type="submit">
                     Submit
                </Button>

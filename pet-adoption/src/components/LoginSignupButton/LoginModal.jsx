@@ -1,10 +1,10 @@
 import React, { useState, useRef } from "react";
 import { Form, Button, Card, Alert, Modal } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
+import { loginUser } from "../../Models/userModels";
 
-//COMPONENT:
 function LoginModal() {
-//////
+
 
      const [show, setShow] = useState(false);
      const handleClose = () => setShow(false);
@@ -14,9 +14,8 @@ function LoginModal() {
      const [error, setError] = useState("");
      const [loading, setLoading] = useState(false);
      const navigate = useNavigate();
-
-     //ADD FUNCTNALITY FROM DATABASE
-     const loginUser = async (e) => {
+  
+     const handleSubmit = async (e) => {
           e.preventDefault();
           try {
                setError("");
@@ -25,7 +24,8 @@ function LoginModal() {
                     email: emailRef.current.value,
                     password: passwordRef.current.value
                }
-               navigate("/userhome");
+               const res = loginUser(user)
+               res && navigate("/userhome");
                console.log(user);
           } catch (error) {
                console.log(error.message);
@@ -45,7 +45,7 @@ function LoginModal() {
                          <Card.Body>
                               <h2 className="text-center mb-4">Login</h2>
                               {error && <Alert variant="danger">{error}</Alert>}
-                              <Form onSubmit={loginUser}>
+                              <Form onSubmit={handleSubmit}>
                                    <Form.Group id="email">
                                         <Form.Label>Email</Form.Label>
                                         <Form.Control

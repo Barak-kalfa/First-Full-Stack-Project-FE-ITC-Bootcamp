@@ -1,29 +1,20 @@
-import { useContext, useEffect, useState } from "react"
-import { AppContext } from "../../App/App"
+
 import { v4 as uuidv4 } from "uuid";
 import PetCard from "../../PETS/PetCard/PetCard";
+import "../../PETS/Pets.css"
 
-function UserPets() {
-  const user = {id: "1"}
-  const {petsList} = useContext(AppContext)
-  const [usersPets, setUsersPets] = useState()
+function UserPets({ userPets }) {
 
-  
-  const getUserPets =async ()=> {
-    const userPets = petsList.filter((pet) => pet.ownerId === user.id)
-    setUsersPets(userPets);
-  }
-  
-  useEffect(()=>{
-    getUserPets()
-  },[])
-
-  return (
-       <div>
-            {usersPets &&
-                 usersPets.map((pet) => <PetCard key={uuidv4()} pet={pet} />)}
-       </div>
-  );
+   return (
+      <div className="user-pets-list">
+         <h1>Your Pets</h1>
+         {userPets?.length === 0 ? (
+            <p>You Currently Have No Pets</p>
+         ) : (
+            userPets?.map((pet) => <PetCard key={uuidv4()} pet={pet} />)
+         )}
+      </div>
+   );
 }
 
-export default UserPets
+export default UserPets;

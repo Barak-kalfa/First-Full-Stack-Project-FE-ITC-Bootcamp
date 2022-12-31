@@ -6,7 +6,7 @@ import { PetContext } from "./PetCard";
 
 function WishListButton() {
      const { currentUser, setCurrentUser } = useContext(AppContext);
-     const { pet, setUseButton } = useContext(PetContext);
+     const { pet, setUseButton, setPetChange, petChange } = useContext(PetContext);
 
      const AddToWishList = async () => {
           const petUserId = {
@@ -15,22 +15,25 @@ function WishListButton() {
           };
           console.log(petUserId);
           try {
-               const res = await axios.post(
+               const res = await axios.put(
                     "http://localhost:8080/users/addtowish",
                     petUserId
                );
-          setUseButton((current) => !current);
-
+               setUseButton((current) => !current);
+               setPetChange(!petChange)
           } catch (err) {
                console.log(err.message);
           }
      };
 
+     const removeFromWishLise = async()=>{
+
+     }
      return (
           <div>
-               <Button variant="info" onClick={AddToWishList}>
+             { !currentUser.wishList.includes(pet.id) ? <Button variant="info" onClick={AddToWishList}>
                     Save For Later
-               </Button>
+               </Button> : <Button> Remove From Wish List</Button>}
           </div>
      );
 }

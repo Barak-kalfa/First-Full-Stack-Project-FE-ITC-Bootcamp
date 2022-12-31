@@ -1,73 +1,64 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Form, Button } from "react-bootstrap";
-import axios from "axios"
-function UserForm({ user }) {
+import { updateUser } from "../../../Models/userModels";
+
+function UserForm({ user}) {
      const [userInfo, setUserInfo] = useState(user);
 
      const handleUserInfo = (e) => {
           setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
      };
-
-     // const handleSubmit = async (e) => {
-     //      e.preventDefault();
-     //      try {
-     //           const res = await axios.post(
-     //                "http://localhost:8080/users/update",
-     //                userInfo
-     //           );
-     //           addPet(res.data);
-     //           console.log(res.data);
-     //      } catch (err) {
-     //           console.log(err.message);
-     //      }
-     // };
+     const handleSubmit=(e)=>{
+          e.preventDefault()
+          updateUser(userInfo);
+     }
 
      return (
-          <Form>
+          <Form onSubmit={handleSubmit}>
                <Form.Control
-                    placeholder={user.firstName}
+                    placeholder={user ? user.firstName : "Enter First Name"}
                     onChange={handleUserInfo}
-                    value={userInfo.firstName}
+                    value={userInfo?.firstName}
                     className="textInput"
                     name="firstName"
                />
                <Form.Control
-                    placeholder={user.lastName}
+                    placeholder={user ? user.lastName : "Enter Last Name"}
                     onChange={handleUserInfo}
-                    value={userInfo.lastName}
+                    value={userInfo?.lastName}
                     className="textInput"
                     name="lastName"
                />
                <Form.Control
-                    placeholder={user.email}
+                    placeholder={user ? user.email : "Enter Email Address"}
                     onChange={handleUserInfo}
-                    value={userInfo.email}
+                    value={userInfo?.email}
                     className="textInput"
                     name="email"
                />
                <Form.Control
-                    placeholder={user.phone}
+                    placeholder={user ? user.phone : "Enter Phone Number"}
                     onChange={handleUserInfo}
-                    value={userInfo.phone}
+                    value={userInfo?.phone}
                     className="textInput"
                     name="phone"
                />
                <Form.Control
-                    placeholder="{user.password}"
-                    //   onChange={handleUserInfo}
-                    //   value={userInfo.password})
+                    placeholder={user ? user.password : "Enter Password"}
+                    onChange={handleUserInfo}
+                    value={userInfo?.password}
                     className="textInput"
                     name="password"
                />
                <Form.Control
-                    placeholder="{user.bio}"
-                    //   onChange={handleUserInfo}
-                    //   value={userInfo.bio})
+                    placeholder={user ? user.bio : "Write A Short Bio"}
+                    onChange={handleUserInfo}
+                    value={userInfo?.bio}
                     className="textInput"
                     name="bio"
                />
                <Button className="w-100" type="submit">
-                    Update Profile
+                    Submit
                </Button>
           </Form>
      );

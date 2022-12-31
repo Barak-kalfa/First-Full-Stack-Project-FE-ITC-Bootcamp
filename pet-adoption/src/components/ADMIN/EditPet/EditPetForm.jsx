@@ -2,12 +2,11 @@ import axios from "axios";
 import { useState, useContext, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { EditPet } from "../../../Modules/petsModules";
+import { EditPet } from "../../../Models/petsModels";
 import { AppContext } from "../../App/App";
 import { PetContext } from "../../PETS/PetCard/PetCard";
 
 function EditPetForm() {
-     const { petsList } = useContext(AppContext);
      const { pet } = useContext(PetContext);
      const [petInfo, setPetInfo] = useState(pet);
 
@@ -30,11 +29,11 @@ function EditPetForm() {
 
      return (
           <Form onSubmit={handleSubmit}>
-               <Form.Select
+               {/* <Form.Select
                     aria-label="Type "
-                    placeholder={pet.type}
+                    placeholder={pet?.type}
                     onChange={handlePetInfo}
-                    value={pet.type}
+                    value={pet?.type}
                     name="type"
                >
                     <option>Type?</option>
@@ -110,10 +109,10 @@ function EditPetForm() {
                />
                <input
                     type="file"
-                    value={petInfo.picture}
+                    value={pet.picture}
                     onChange={handlePetInfo}
                     name="picture"
-               />
+               /> */}
                <Button variant="primary" type="submit">
                     Submit
                </Button>

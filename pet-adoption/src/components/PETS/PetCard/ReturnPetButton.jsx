@@ -6,12 +6,12 @@ import { AppContext } from "../../App/App";
 
 function ReturnPetButton() {
      const { petsList, setPetsList } = useContext(AppContext);
-     const { pet, setUseButton } = useContext(PetContext);
+     const { pet, setUseButton, setPetChange, petChange, setIsOwner } = useContext(PetContext);
 
      const returnPet = async () => {
           const petId = {petId : pet.id};
           try {
-               const res = await axios.post(
+               const res = await axios.put(
                     "http://localhost:8080/pets/return",
                     petId
                );
@@ -25,6 +25,8 @@ function ReturnPetButton() {
                });
                setPetsList(newList);
                setUseButton((current) => !current);
+               setPetChange(!petChange)
+               setIsOwner(false)
           } catch (err) {
                console.log(err.message);
           }

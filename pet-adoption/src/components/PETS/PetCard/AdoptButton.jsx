@@ -6,7 +6,7 @@ import { AppContext } from "../../App/App";
 
 function AdoptButton() {
 const { currentUser, petsList, setPetsList } = useContext(AppContext);
-const { pet, setUseButton } = useContext(PetContext);
+const { pet, setUseButton, setPetChange, petChange } = useContext(PetContext);
 
       const adoptPet = async () => {
            const petUserId = {
@@ -14,7 +14,7 @@ const { pet, setUseButton } = useContext(PetContext);
                 userId: currentUser.userId,
            };
            try {
-                const res = await axios.post(
+                const res = await axios.put(
                      "http://localhost:8080/pets/adopt",
                      petUserId
                 );
@@ -27,7 +27,7 @@ const { pet, setUseButton } = useContext(PetContext);
                 });
                 console.log(newList);
                 setPetsList(newList);
-                setUseButton((current)=>!current)
+                setPetChange(!petChange)
            } catch (err) {
                 console.log(err.message);
            }

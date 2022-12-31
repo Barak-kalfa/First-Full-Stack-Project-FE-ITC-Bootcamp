@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import UserForm from "../AddUser/UserForm";
 
-function UserCard({ user }) {
-       const [show, setShow] = useState(false);
+
+function UserCard({ user}) {
+     const [show, setShow] = useState(false);
+    
      return (
           <div className="mb-3">
                <div onClick={() => setShow(true)}>
@@ -20,7 +22,7 @@ function UserCard({ user }) {
                     aria-labelledby="user-from"
                >
                     <Modal.Body>
-                         <UserForm user={user} />
+                         <UserForm user={user}/>
                     </Modal.Body>
                </Modal>
           </div>
