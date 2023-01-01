@@ -7,7 +7,7 @@ function UsersList() {
           const [usersList, setUsersList] = useState([]);
           async function getUsers() {
           try {
-               const users = await axios.get("http://localhost:8080/users");
+               const users = await axios.get("http://localhost:8080/users/all");
                setUsersList(users.data);
           } catch (err) {
                console.log(err.message);

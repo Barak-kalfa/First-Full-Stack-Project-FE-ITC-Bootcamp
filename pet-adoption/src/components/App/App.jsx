@@ -33,7 +33,7 @@ function App() {
      };
      const getPetsList = async () => {
           try {
-               const data = await axios.get("http://localhost:8080/pets");
+               const data = await axios.get("http://localhost:8080/pets/all");
                setPetsList(data.data);
           } catch (err) {
                console.log(err.message);

@@ -14,7 +14,6 @@ function SignUpModal() {
      const passwordConfirmRef = useRef();
      const [error, setError] = useState("");
      const [loading, setLoading] = useState(false);
-     const navigate = useNavigate();
      const [show, setShow] = useState(false);
      const handleClose = () => setShow(false);
      const handleShow = () => setShow(true);
@@ -29,17 +28,16 @@ function SignUpModal() {
             try {
                  setError("");
                  setLoading(true);
-                       const user = {
+                       const newUser = {
                             firstName: firstNameRef.current.value,
-                            lastName: lastNameRef.current.vallue,
+                            lastName: lastNameRef.current.value,
                             phone: phoneRef.current.value,
                             email: emailRef.current.value,
                             password: passwordRef.current.value,
-                            registrationDate: new Date()
                        };
-                    const res = signUpUser(user)
+                    const res = await signUpUser(newUser)
+                    setError(res)
                     // change to equal login
-                 res && navigate("/userhome");
             } catch (error) {
                  console.log(error.message);
                  setError("Failed To Create An Account :(");
@@ -118,6 +116,7 @@ function SignUpModal() {
                           disabled={loading}
                           className="w-100"
                           type="submit"
+                          onClick={handleClose}
                        >
                           Sign Up
                        </Button>

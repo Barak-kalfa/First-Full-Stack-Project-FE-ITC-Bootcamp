@@ -4,36 +4,43 @@ import { v4 as uuidv4 } from "uuid";
 import { useContext, useEffect, useState, createContext } from "react";
 import { AppContext } from "../App/App";
 import "./PetListCSS.css"
+import axios from "axios";
 
 
 function PetList() {
    const { petsList } = useContext(AppContext);
-   const [searchInput, setSearchInput] = useState("");
+   const [query, setQuery] = useState("");
+   const [queryCriterias, setQueryCriterias] = ["type"]
    const [listToShow, setListToShow] = useState(petsList);
 
    useEffect(() => {
-      if (searchInput.length == 0) {
+      if (query.length == 0) {
          setListToShow(petsList);
       }
    });
 
-   const handleSearch = (e) => {
+   const handleQuery = async (e) => {
       e.preventDefault();
-      setSearchInput(e.target.value);
+      const responseList = await axios.get(`http://localhost:8080/pets/?query=${query}`);
+      setListToShow(responseList)
    };
 
    useEffect(() => {
-      if (searchInput.length > 0) {
+      if (query.length > 0) {
          const newList = petsList.filter((pet) => {
-            return pet.name.match(searchInput);
+            return pet.name.match(query);
          });
          setListToShow(newList);
       }
-   }, [searchInput]);
+   }, [query]);
 
    return (
       <div className="pet-list">
-         <SearchBar handleSearch={handleSearch} searchInput={searchInput} className="search-bar"/>
+         <SearchBar
+            handleQuery={handleQuery}
+            setQuery={setQuery}
+            className="search-bar"
+         />
 
          <div className="d-flex flex-wrap">
             {listToShow &&

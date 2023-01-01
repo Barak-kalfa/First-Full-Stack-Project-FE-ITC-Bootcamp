@@ -1,34 +1,33 @@
 import axios from "axios";
 
-export async function signUpUser(user) {
+export async function signUpUser(newUser) {
      try {
-          const res = await axios.post(
-               "http://localhost:8080/users/signup",
-               user
+          const userIdOkObj = await axios.post(
+             "http://localhost:8080/users/signup",
+             newUser
           );
-          console.log(user);
-          if (res) {
-               console.log(res);
-               return res;
+          if (userIdOkObj.ok) {
+             return true;
           }
      } catch (err) {
-          console.log(err.message);
+          console.log(err.response.data);
+          return err.response.data;
      }
 }
 
 export async function loginUser(user) {
      try {
-          const res = await axios.post(
+          const returendUser = await axios.post(
                "http://localhost:8080/users/login",
                user
           );
           // FE encryption needed
-          if (res) {
-               console.log(res);
-               return res;
+          if (returendUser) {
+             return returendUser;
           }
      } catch (err) {
           console.log(err.message);
+          return err.response.data;
      }
 }
 
