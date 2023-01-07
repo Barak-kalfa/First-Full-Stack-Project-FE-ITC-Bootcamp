@@ -9,19 +9,40 @@ export function usePetContext() {
 }
 
 export function PetProvider({ children }) {
+   console.log("PetProvider RENDERS");
    const [petsList, setPetsList] = useState([]);
    const [userPets, setUsersPets] = useState([]);
    const [userSaves, setUserSaves] = useState([])
+   // const [searchPets, setSearchPets] = useState()
+   const [listToShow, setListToShow] = useState();
 
    const addPet = (newPet) => {
       const newPetsList = [...petsList, newPet];
       setPetsList(newPetsList);
    };
+ 
+   
+   const getSearchPets = async (searchInput) => {
+      try {
+         // const pets = await axios.get(
+         //    "http://localhost:8080/pets/search",
+         //    searchInput
+         // );
+         // setListToShow(pets);
+      } catch (err) {
+         console.log(err);
+      }
+   };
 
-   const addSavedPetLocaly = (newSave) => {
-      const newSavedList = [...userSaves, newSave];
+   const addSavedPetLocaly = (pet) => {
+      const newSavedList = [...userSaves, pet];
       setUserSaves(newSavedList);
    };
+
+      const removeSavedPetLocaly = (petId) => {
+         const newSavedList = userSaves.filter((pet) => pet.petId !== petId);
+         setUserSaves(newSavedList);
+      };
 
    const getPetsList = async () => {
       try {
@@ -40,12 +61,14 @@ export function PetProvider({ children }) {
       try {
          const res = await axios.get(`http://localhost:8080/pets/user/${userId}`);
          setUsersPets(res.data.pets);
-
          const saveList = res.data.savedPets;
+         const arr = []
          saveList.map(async(pet) =>{
             const savedPet = await axios.get(`http://localhost:8080/pets/${pet.petId}`);
-            setUserSaves([...userSaves, savedPet.data]);
+            arr.push(savedPet.data[0]);   
          })
+            setUserSaves(arr);
+
          return 
       
       } catch (err) {
@@ -53,9 +76,7 @@ export function PetProvider({ children }) {
       }
    };
 
-   // useEffect(() => {
-   //    getUserPets(currentUser?.userId);
-   // }, []);
+
 
    const value = {
       addPet,
@@ -65,6 +86,10 @@ export function PetProvider({ children }) {
       getUserPets,
       addSavedPetLocaly,
       userSaves,
+      listToShow,
+      // setSearchPets,
+      getSearchPets,
+      removeSavedPetLocaly,
    };
 
    return <PetsContext.Provider value={value}>{children}</PetsContext.Provider>;

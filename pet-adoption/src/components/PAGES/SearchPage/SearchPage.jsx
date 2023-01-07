@@ -4,15 +4,13 @@ import PetList from "../../PetList/PetList";
 import "./SearchPageCSS.css";
 
 function SearchPage() {
+   const { currentUser } = useUsersContext();
 
-   const {currentUser} = useUsersContext()
+
    return (
       <div className="Search-Page">
          <NavBar />
-         <h1>
-            Wellcom Back {currentUser?.firstName}
-            {currentUser?.lastName}
-         </h1>
+         <h1>Wellcom Back {currentUser?.firstName}</h1>
          <PetList />
       </div>
    );

@@ -20,6 +20,7 @@ function MyPetsPage() {
    useEffect(() => {
       currentUser && getUserPets(currentUser?.userId);
    }, [currentUser]);
+   
 
    return (
       <div>

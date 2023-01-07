@@ -10,44 +10,17 @@ import { usePetContext } from "../../context/PetsContext";
 
 function PetList() {
    
-   const { petsList } = usePetContext()
-   const [query, setQuery] = useState("");
-   const [queryCriterias, setQueryCriterias] = ["type"]
-   const [listToShow, setListToShow] = useState(petsList);
 
-   useEffect(() => {
-      if (query.length == 0) {
-         setListToShow(petsList);
-      }
-   });
-
-   const handleQuery = async (e) => {
-      e.preventDefault();
-      // console.log(query);
-      // const responseList = await axios.get(`http://localhost:8080/pets/search?query=${query}`);
-      // setListToShow(responseList)
-   };
-
-   // useEffect(() => {
-   //    if (query.length > 0) {
-   //       const newList = petsList.filter((pet) => {
-   //          return pet.name.match(query);
-   //       });
-   //       setListToShow(newList);
-   //    }
-   // }, [query]);
+   const { listToShow, petsList } = usePetContext();
 
    return (
       <div className="pet-list">
-         <SearchBar
-            handleQuery={handleQuery}
-            setQuery={setQuery}
-            className="search-bar"
-         />
+         <SearchBar className="search-bar" />
 
          <div className="d-flex flex-wrap">
-            {listToShow &&
-               listToShow.map((pet) => <PetCard key={uuidv4()} pet={pet} />)}
+            {listToShow
+               ? listToShow.map((pet) => <PetCard key={uuidv4()} pet={pet} />)
+               : petsList.map((pet) => <PetCard key={uuidv4()} pet={pet} />)}
          </div>
       </div>
    );

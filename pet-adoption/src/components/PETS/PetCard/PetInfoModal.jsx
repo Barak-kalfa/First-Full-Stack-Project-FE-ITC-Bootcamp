@@ -19,7 +19,7 @@ function PetInfoModal() {
          </Button>
 
          <Modal show={show} onHide={handleClose}>
-            <div className="p-5">
+            <div className="p-5 pet-info-modal">
                <h4>Name: {pet.name}</h4>
                <div>
                   <img className="pet-img-modal" src={pet.picture} />

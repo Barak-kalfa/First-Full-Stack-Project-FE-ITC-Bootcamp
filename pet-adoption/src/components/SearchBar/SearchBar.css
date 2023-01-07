@@ -1,21 +1,89 @@
-.search-box{
-     border: 2px solid black;
-     border-radius: 15px;
-     width: 100%;
-     padding: 5px;
-     padding-left: 1rem;
-     background-color: #FFB100;
+.search-box {
+   border-radius: 15px;
+   width: 100%;
+   padding: 5px;
+   padding-left: 1rem;
+   background-color: #ffffff;
+   display: flex;
+   padding-right: 1rem;
+   padding-bottom: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.3) 5px 7px 15px 5px;
 }
 
-.search-input{
-     width: 100%;
-     border: none;
-     background-color: #FFB100;
-
+.search-input {
+   width: 100%;
+   border: none;
+   background-color: #ffffff;
+   font-family: "Lilita One", cursive;
 }
 
-.search-button{
-     width: 5rem;
-     border: 1px solid black;
-     border-radius: 10px;
+.search-input:focus {
+   outline: none;
 }
+
+.search-button {
+   color: rgb(255, 255, 255);
+   margin-top: 1rem;
+   width: 4rem;
+   font-size: 14px;
+   line-height: 14px;
+   padding: 10px;
+   border-radius: 33px;
+   font-family: "Lilita One", cursive;
+   font-weight: normal;
+   text-decoration: none;
+   font-style: normal;
+   font-variant: normal;
+   text-transform: none;
+   background-image: linear-gradient(
+      to right,
+      rgb(28, 110, 164) 0%,
+      rgb(35, 136, 203) 0%,
+      rgb(20, 78, 117) 100%
+   );
+   box-shadow: rgba(0, 0, 0, 0.3) 5px 7px 15px 5px;
+   border: 2px solid rgb(28, 110, 164);
+   display: inline-block;
+}
+.advanced-search {
+   display: flex;
+   gap: 1rem;
+    font-family: "Lilita One", cursive;
+     margin-left: 5rem;
+}
+.dropdown {
+     display: flex;
+     align-items: center;
+}
+.dropdown button {
+   color: rgb(255, 255, 255);
+   margin-top: 1rem;
+   width: 4rem;
+   font-size: 14px;
+   line-height: 14px;
+   padding: 10px;
+   border-radius: 33px;
+   font-family: "Lilita One", cursive;
+   font-weight: normal;
+   text-decoration: none;
+   font-style: normal;
+   font-variant: normal;
+   text-transform: none;
+   background-image: linear-gradient(
+      to right,
+      rgb(28, 110, 164) 0%,
+      rgb(35, 136, 203) 0%,
+      rgb(20, 78, 117) 100%
+   );
+   box-shadow: rgba(0, 0, 0, 0.3) 5px 7px 15px 5px;
+   border: 2px solid rgb(28, 110, 164);
+   display: inline-block;
+}
+.myButton:hover {
+   background: #1c6ea4;
+}
+.myButton:active {
+   background: #144e75;
+}
+
+

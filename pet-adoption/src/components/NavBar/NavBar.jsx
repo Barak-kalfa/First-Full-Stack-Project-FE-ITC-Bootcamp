@@ -26,7 +26,7 @@ function NavBar() {
                        <Nav.Link href="admin">Admin Dashboard</Nav.Link>
                     )}
                     {currentUser ? (
-                       <Nav.Link href="#pricing">Sign Out</Nav.Link>
+                       <Nav.Link href="#pricing">Log Out</Nav.Link>
                     ) : (
                        <Nav.Link href="/">Login/Sign up</Nav.Link>
                     )}

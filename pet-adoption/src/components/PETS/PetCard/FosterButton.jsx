@@ -26,11 +26,12 @@ function FosterButton() {
          if (res) {
             const newList = petsList;
             newList.forEach((pet) => {
-               if (pet.id === petUserId.petId) {
+               if (pet.petId === petUserId.petId) {
                   pet.fosterId = currentUser.userId;
                   pet.adoptionStatus = "Fosterd";
                }
             });
+         
             setPetsList(newList);
             setPetChange(!petChange);
          }

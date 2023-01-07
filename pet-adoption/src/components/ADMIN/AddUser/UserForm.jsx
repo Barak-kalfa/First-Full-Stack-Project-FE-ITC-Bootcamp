@@ -62,8 +62,9 @@ function UserForm() {
             placeholder={currentUser ? currentUser.bio : "Write A Short Bio"}
             onChange={handleUserInfo}
             value={userInfo?.bio}
-            className="textInput"
+            as="textarea"
             name="bio"
+            style={{ height: "100px" }}
          />
          <Form.Label>Password</Form.Label>
          <Form.Control
@@ -73,7 +74,7 @@ function UserForm() {
             className="textInput"
             name="password"
          />
-         <Button className="w-100" type="submit">
+         <Button className="w-100 mt-2" type="submit">
             Save Changes
          </Button>
       </Form>

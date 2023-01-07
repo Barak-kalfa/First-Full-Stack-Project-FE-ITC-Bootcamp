@@ -1,13 +1,14 @@
 import React, { useContext, useState } from "react";
 import UserForm from "../../ADMIN/AddUser/UserForm";
 import NavBar from "../../NavBar/NavBar";
+import "./ProfilePage.css"
 
 function ProfilePage() {
-
+console.log("ProfilePage RENDER");
      return (
-          <div>
+          <div className="profile-page">
                <NavBar />
-               <div className="d-flex justify-content-center mt-5">
+               <div className="profile-form" >
                     <UserForm  />
                </div>
           </div>

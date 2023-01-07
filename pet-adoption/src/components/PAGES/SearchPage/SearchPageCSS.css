@@ -4,3 +4,8 @@
      display: flex;
      flex-direction: column;
 }
+
+.Search-Page h1 {
+      font-family: "Lilita One", cursive;
+      margin-top: 2rem;
+}
