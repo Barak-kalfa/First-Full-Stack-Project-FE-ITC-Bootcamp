@@ -1,17 +1,21 @@
-
+import { useUsersContext } from "../../../context/UsersContext";
 import NavBar from "../../NavBar/NavBar";
 import PetList from "../../PetList/PetList";
-import "./SearchPageCSS.css"
+import "./SearchPageCSS.css";
 
 function SearchPage() {
-     return (
-        <div className="w-100">
-           <NavBar />
-           <div className="search-box">
-              <PetList />
-           </div>
-        </div>
-     );
+
+   const {currentUser} = useUsersContext()
+   return (
+      <div className="Search-Page">
+         <NavBar />
+         <h1>
+            Wellcom Back {currentUser?.firstName}
+            {currentUser?.lastName}
+         </h1>
+         <PetList />
+      </div>
+   );
 }
 
 export default SearchPage;

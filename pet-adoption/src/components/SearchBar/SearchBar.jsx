@@ -1,17 +1,17 @@
 import { useState } from "react";
 import { Button } from "react-bootstrap";
-import "../PetList/PetListCSS.css";
+import "./SearchBar.css"
 
 function SearchBar({ handleQuery, setQuery }) {
    return (
-      <div className="search-bar d-flex">
+      <div className="search-box d-flex">
          <input
             type="text"
             placeholder="Search Pet"
             onChange={(e) => setQuery(e.target.value)}
-            className="search"
+            className="search-input"
          />
-         <Button onClick={handleQuery} />
+         <Button className="search-button" onClick={handleQuery} > Search</Button>
       </div>
    );
 }

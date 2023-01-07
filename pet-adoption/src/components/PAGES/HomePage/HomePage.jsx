@@ -1,9 +1,11 @@
 import { useContext, useState } from "react";
+import { useUsersContext } from "../../../context/UsersContext";
 import { AppContext } from "../../App/App";
 import NavBar from "../../NavBar/NavBar";
 import "./HomePage.css"
 function HomePage() {
-   const { currentUser } = useContext(AppContext);
+
+   const { currentUser } = useUsersContext();
 
    return (
       <div className="HomePage">

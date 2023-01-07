@@ -5,10 +5,12 @@ import { useContext, useEffect, useState, createContext } from "react";
 import { AppContext } from "../App/App";
 import "./PetListCSS.css"
 import axios from "axios";
+import { usePetContext } from "../../context/PetsContext";
 
 
 function PetList() {
-   const { petsList } = useContext(AppContext);
+   
+   const { petsList } = usePetContext()
    const [query, setQuery] = useState("");
    const [queryCriterias, setQueryCriterias] = ["type"]
    const [listToShow, setListToShow] = useState(petsList);
@@ -21,18 +23,19 @@ function PetList() {
 
    const handleQuery = async (e) => {
       e.preventDefault();
-      const responseList = await axios.get(`http://localhost:8080/pets/?query=${query}`);
-      setListToShow(responseList)
+      // console.log(query);
+      // const responseList = await axios.get(`http://localhost:8080/pets/search?query=${query}`);
+      // setListToShow(responseList)
    };
 
-   useEffect(() => {
-      if (query.length > 0) {
-         const newList = petsList.filter((pet) => {
-            return pet.name.match(query);
-         });
-         setListToShow(newList);
-      }
-   }, [query]);
+   // useEffect(() => {
+   //    if (query.length > 0) {
+   //       const newList = petsList.filter((pet) => {
+   //          return pet.name.match(query);
+   //       });
+   //       setListToShow(newList);
+   //    }
+   // }, [query]);
 
    return (
       <div className="pet-list">

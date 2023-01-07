@@ -1,22 +1,39 @@
 import { Navbar, Nav, Container } from "react-bootstrap";
+import { useUsersContext } from "../../context/UsersContext";
 import "../App/App.css";
 import "./NavBarCSS.css"
 
 function NavBar() {
+   const {currentUser} = useUsersContext()
      return (
-          <div className="NavBar">
-               <Navbar>
-                    <Container>
-                         <Navbar.Brand href="/home">Home</Navbar.Brand>
-                         <Nav className="me-auto">
-                              <Nav.Link href="search">Search A Friend</Nav.Link>
-                              <Nav.Link href="profile">View Profile</Nav.Link>
-                              <Nav.Link href="admin">Admin Dashboard</Nav.Link>
-                              <Nav.Link href="#pricing">Sign Out</Nav.Link>
-                         </Nav>
-                    </Container>
-               </Navbar>
-          </div>
+        <div className="Nav-bar">
+           <Navbar className="w-100">
+              <Container>
+                 <Navbar.Brand>
+                    <img
+                       alt=""
+                       src="../images/logo.jpg"
+                       width="30"
+                       height="30"
+                       className="d-inline-block align-top"
+                    />
+                 </Navbar.Brand>
+                 <Nav className="me-auto nav-links">
+                    <Nav.Link href="search">Search</Nav.Link>
+                    <Nav.Link href="profile">View Profile</Nav.Link>
+                    <Nav.Link href="mypets">My Pets</Nav.Link>
+                    {currentUser?.isAdmin && (
+                       <Nav.Link href="admin">Admin Dashboard</Nav.Link>
+                    )}
+                    {currentUser ? (
+                       <Nav.Link href="#pricing">Sign Out</Nav.Link>
+                    ) : (
+                       <Nav.Link href="/">Login/Sign up</Nav.Link>
+                    )}
+                 </Nav>
+              </Container>
+           </Navbar>
+        </div>
      );
 }
 

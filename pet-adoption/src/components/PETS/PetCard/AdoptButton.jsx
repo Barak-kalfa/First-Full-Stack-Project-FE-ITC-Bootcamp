@@ -3,42 +3,46 @@ import axios from "axios";
 import { useContext } from "react";
 import { PetContext } from "./PetCard";
 import { AppContext } from "../../App/App";
+import { usePetContext } from "../../../context/PetsContext";
+import { useUsersContext } from "../../../context/UsersContext";
 
 function AdoptButton() {
-const { currentUser, petsList, setPetsList } = useContext(AppContext);
-const { pet, setUseButton, setPetChange, petChange } = useContext(PetContext);
+   const { petsList, setPetsList } = usePetContext();
+   const { pet, setPetChange, petChange } = useContext(PetContext);
+   const { currentUser } = useUsersContext();
 
-      const adoptPet = async () => {
-           const petUserId = {
-                petId: pet.id,
-                userId: currentUser.userId,
-           };
-           try {
-                const res = await axios.put(
-                     "http://localhost:8080/pets/adopt",
-                     petUserId
-                );
-                const newList = petsList;
-                newList.forEach((pet) => {
-                     if (pet.id === petUserId.petId) {
-                          pet.ownerId = currentUser.userId;
-                          pet.adoptionStatus = "Adopted";
-                     }
-                });
-                console.log(newList);
-                setPetsList(newList);
-                setPetChange(!petChange)
-           } catch (err) {
-                console.log(err.message);
-           }
+   const adoptPet = async () => {
+      const petUserId = {
+         petId: pet.petId,
+         userId: currentUser.userId,
       };
-     return (
-          <div>
-               <Button variant="success" onClick={adoptPet}>
-                    Adopt
-               </Button>
-          </div>
-     );
+      try {
+         const res = await axios.post(
+            "http://localhost:8080/pets/adopt",
+            petUserId
+         );
+         if (res) {
+            const newList = petsList;
+            newList.forEach((pet) => {
+               if (pet.petId === petUserId.petId) {
+                  pet.ownerId = currentUser.userId;
+                  pet.adoptionStatus = "Adopted";
+               }
+            });
+            setPetsList(newList);
+            setPetChange(!petChange);
+         }
+      } catch (err) {
+         console.log(err.message);
+      }
+   };
+   return (
+      <div>
+         <Button variant="success" onClick={adoptPet}>
+            Adopt
+         </Button>
+      </div>
+   );
 }
 
 export default AdoptButton;

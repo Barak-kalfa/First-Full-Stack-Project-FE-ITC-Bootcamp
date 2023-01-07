@@ -1,9 +1,6 @@
 .App {
   height: 100vh;
   width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  background-color: #E5E5E5;
+  background-color: #FEFCF3;
 }
 

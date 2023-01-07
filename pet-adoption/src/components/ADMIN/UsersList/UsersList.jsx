@@ -4,10 +4,15 @@ import axios from "axios";
 import UserCard from "../UserInfo/UserCard";
 
 function UsersList() {
-          const [usersList, setUsersList] = useState([]);
-          async function getUsers() {
+          const [usersList, setUsersList] = useState();
+
+           const getUsers = async() => {
           try {
-               const users = await axios.get("http://localhost:8080/users/all");
+          
+               const users = await axios.get(
+                  "http://localhost:8080/users/all",
+                  { withCredentials: true }
+               );
                setUsersList(users.data);
           } catch (err) {
                console.log(err.message);
@@ -27,7 +32,7 @@ function UsersList() {
                                    key={uuidv4()}
                                    user={user}
                               />
-                         )) : "Failed To Load Users List"}
+                         )) : "Loading Users List"}
                </div>
           </div>
      );

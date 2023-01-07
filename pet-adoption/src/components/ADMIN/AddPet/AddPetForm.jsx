@@ -2,11 +2,12 @@ import axios from "axios";
 import { useState, useContext, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { usePetContext } from "../../../context/PetsContext";
 import { AppContext } from "../../App/App";
 
 
 function AddPetForm({pet}) {
-     const { addPet } = useContext(AppContext);
+     const { addPet } = usePetContext()
      //https://images.dog.ceo/breeds/bluetick/n02088632_1173.jpg
      const [petInfo, setPetInfo] = useState({
           type: "",
@@ -20,10 +21,6 @@ function AddPetForm({pet}) {
           hypoallerganic: false,
           dietary: "",
           breed: "",
-     });
-
-     useEffect(() => {
-          console.log(petInfo);
      });
 
      const [petPicture, setPetPicture] = useState("");
@@ -44,7 +41,6 @@ function AddPetForm({pet}) {
                     petInfo
                );
                addPet(res.data);
-               console.log("xxx|", res.data);
           } catch (err) {
                console.log(err.message);
           }

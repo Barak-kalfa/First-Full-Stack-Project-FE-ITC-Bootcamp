@@ -1,7 +1,9 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import { Form, Button, Card, Alert, Modal } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import { loginUser } from "../../Models/userModels";
+import { useUsersContext } from "../../../context/UsersContext";
+import { loginUser } from "../../../Models/userModels";
+import "./LandingPage.css";
 
 function LoginModal() {
    const [show, setShow] = useState(false);
@@ -12,6 +14,7 @@ function LoginModal() {
    const [error, setError] = useState("");
    const [loading, setLoading] = useState(false);
    const navigate = useNavigate();
+   const { setUser} = useUsersContext();
 
    const handleSubmit = async (e) => {
       e.preventDefault();
@@ -22,12 +25,13 @@ function LoginModal() {
             email: emailRef.current.value,
             password: passwordRef.current.value,
          };
-         const res = await loginUser(user);
-         console.log(res);
-         if (res.error) {
-            setError(res.error);
+         const loggedUser = await loginUser(user);
+         if (loggedUser.error) {
+            setError(loggedUser.error);
          } else {
-           navigate("/home");
+            setUser(loggedUser);
+            localStorage.setItem("userId", loggedUser.userId);
+              navigate("/search");
          }
       } catch (error) {
          console.log(error.message);
@@ -38,7 +42,7 @@ function LoginModal() {
 
    return (
       <>
-         <Button variant="primary" onClick={handleShow}>
+         <Button className="login-button" onClick={handleShow}>
             Login
          </Button>
 

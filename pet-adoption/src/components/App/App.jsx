@@ -8,70 +8,35 @@ import "./App.css";
 import ProfilePage from "../PAGES/ProfilePage/profilePage";
 import AdminPage from "../ADMIN/AdminDashboard/AdminPage";
 import MyPetsPage from "../PAGES/MyPetsPage/MyPetsPage";
-
-export const AppContext = createContext();
+import { PetProvider } from "../../context/PetsContext";
+import { UsersProvider } from "../../context/UsersContext";
+import Test from "../Test";
+import HeaderBar from "../HeaderBar/HeaderBar";
+import NavBar from "../NavBar/NavBar";
 
 function App() {
-     console.log("App render");
-     const [petsList, setPetsList] = useState([]);
+   console.log("App render");
 
-     //FOR TESTING:
-     const currentUser = {
-        userId: 10,
-        firstName: " Leanne",
-        lastName: "  Graham",
-        email: "Example@april.biz",
-        phone: "1-770-Example",
-        bio: "This is the bio",
-        wishList: ["b8a12b5c-0ce4-4033-bff0-cf77fee39659"],
-        admin: true,
-     };
 
-     const addPet = (newPet) => {
-          const newPetsList = [...petsList, newPet];
-          setPetsList(newPetsList);
-     };
-     const getPetsList = async () => {
-          try {
-               const data = await axios.get("http://localhost:8080/pets/all");
-               setPetsList(data.data);
-          } catch (err) {
-               console.log(err.message);
-          }
-     };
-
-     useEffect(() => {
-          getPetsList();
-     }, []);
-
-     return (
-        <div className="App">
-           <AppContext.Provider
-              value={{
-                 petsList,
-                 addPet,
-                 currentUser,
-                 setPetsList,
-              }}
-           >
-              <BrowserRouter>
-                 <Routes>
-                    <Route path="/" element={<LandingPage />} />
-                    <Route path="/search" element={<SearchPage />} />( //secure
-                    routes:)
-                    {/* <Route
-                                   path="/adminhome"
-                                   element={<AdminHome />}
-                              /> */}
-                    <Route path="/profile" element={<ProfilePage />} />
-                    <Route path="/admin" element={<AdminPage />} />
-                    <Route path="/mypets" element={<MyPetsPage />} />
-                    <Route path="/home" element={<HomePage />} />
-                 </Routes>
-              </BrowserRouter>
-           </AppContext.Provider>
-        </div>
-     );
+   return (
+      <div className="App">
+         <PetProvider>
+            <UsersProvider>
+               {/* {true && <NavBar />} */}
+                  <BrowserRouter>
+                     <Routes>
+                        <Route path="/" element={<LandingPage />} />
+                        <Route path="/search" element={<SearchPage />} />
+                        ( //secure routes:)
+                        <Route path="/profile" element={<ProfilePage />} />
+                        <Route path="/admin" element={<AdminPage />} />
+                        <Route path="/mypets" element={<MyPetsPage />} />
+                     </Routes>
+                  </BrowserRouter>
+            </UsersProvider>
+         </PetProvider>
+      </div>
+   );
 }
 
 export default App;

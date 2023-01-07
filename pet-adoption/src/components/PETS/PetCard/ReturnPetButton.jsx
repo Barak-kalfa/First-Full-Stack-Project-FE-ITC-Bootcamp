@@ -3,30 +3,28 @@ import Button from "react-bootstrap/Button";
 import { PetContext } from "./PetCard";
 import axios from "axios";
 import { AppContext } from "../../App/App";
+import { usePetContext } from "../../../context/PetsContext";
 
 function ReturnPetButton() {
-     const { petsList, setPetsList } = useContext(AppContext);
-     const { pet, setUseButton, setPetChange, petChange, setIsOwner } = useContext(PetContext);
+     const { petsList, setPetsList } = usePetContext()
+     const { pet, setPetChange, petChange } = useContext(PetContext);
 
      const returnPet = async () => {
-          const petId = {petId : pet.id};
+          const petId = pet.petId ;
           try {
-               const res = await axios.put(
-                    "http://localhost:8080/pets/return",
-                    petId
+               const res = await axios.post(
+                    `http://localhost:8080/pets/${petId}/return`
                );
                const newList = petsList;
                newList.forEach((pet) => {
-                    if (pet.id === petId) {
+                    if (pet.petId === petId) {
                          pet.ownerId = "";
                          pet.adoptionStatus = "";
                          pet.fosterId = "";
                     }
                });
                setPetsList(newList);
-               setUseButton((current) => !current);
                setPetChange(!petChange)
-               setIsOwner(false)
           } catch (err) {
                console.log(err.message);
           }

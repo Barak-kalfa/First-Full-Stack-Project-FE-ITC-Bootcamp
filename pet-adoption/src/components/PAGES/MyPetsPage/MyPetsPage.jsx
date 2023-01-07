@@ -1,34 +1,25 @@
-import axios from "axios";
 import { Button } from "react-bootstrap";
-import { useContext, useEffect, useState } from "react";
-import { AppContext } from "../../App/App";
+import { useEffect, useState } from "react";
 import UserPets from "../../USER/UserPets/UserPets";
 import UserWishList from "../../USER/UserWishList/UserWishList";
 import NavBar from "../../NavBar/NavBar";
+import { useUsersContext } from "../../../context/UsersContext";
+import { usePetContext } from "../../../context/PetsContext";
 
 function MyPetsPage() {
+   // console.log("MyPetsPage Render");
+
    const [toggleLists, setToggleLists] = useState(true);
-   const [userPets, setUsersPets] = useState([]);
-   const { currentUser } = useContext(AppContext);
+   const { currentUser } = useUsersContext()
+   const { userPets, getUserPets, userSaves } = usePetContext();
 
    const handleToggle = () => {
       setToggleLists(!toggleLists);
    };
 
-   // const getUsersPets = async (userId) => {
-   //    try {
-   //       const res = await axios.get(`http://localhost:8080/pets/${userId}`);
-   //       console.log(res);
-   //       setUsersPets(res);
-   //       return res;
-   //    } catch (err) {
-   //       console.log(err);
-   //    }
-   // };
-
-   // useEffect(() => {
-   //    getUsersPets(currentUser?.userId);
-   // }, []);
+   useEffect(() => {
+      currentUser && getUserPets(currentUser?.userId);
+   }, [currentUser]);
 
    return (
       <div>

@@ -1,42 +1,149 @@
 .LandingPage {
+   width: 100%;
+   height: 100vh;
+}
+
+.landing-page-header{
+          background-color: #FFB100;
+     height: 10.5rem;
+     width: 100%;
+     box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.38);
+     font-family: 'Lobster', cursive;
+     padding: 0 1rem;
      display: flex;
-     flex-direction: column;
-     border: 3px solid black;
-     width: 100%;
      justify-content: center;
-     align-items: center;
-     background-image: url(https://images.dog.ceo/breeds/boxer/n02108089_5423.jpg);
-     background-repeat: no-repeat;
-     background-position: center;
-     background-size: cover;
 }
 
-.bar{
-     background-color: black;
-     height: 6%;
-     width: 100%;
-     top:0;
-     display:block;
-     top: 0;
-
+.landing-page-header h1 {
+     font-size: 8rem;
+     
 }
 
-.title {
-     color: white;
-     font-size: 5rem;
-     border: 10px solid white;
-     margin-top: 1rem;
-     border-radius: 15px;
-     padding: 1rem;
+.top-bar {
+   background-color: #ffb100;
+   height: 3.5rem;
+   width: 100%;
+   box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.38);
+   font-family: "Lobster", cursive;
+   padding: 0 1rem;
+   display: flex;
+   justify-content: center;
 }
 
-.subtitle {
-     color: white;
-     font-size: 2rem;
-     font-weight: bolder;
+.top-bar p {
+   font-size: 2rem;
+   
+}
+.top-bottom-bar {
+   background-color: #ffc93c;
+   height: 2rem;
+   width: 100%;
 }
 
-.login{
-     margin-right: 3rem;
+.content-box {
+   margin-top: 3rem;
+   width: 100%;
+   height: 25rem;
+   display: flex;
+   align-items: center;
+   flex-direction: column;
+   justify-content: space-around;
+}
+.content-box h1 {
+   font-family: "Lilita One", cursive;
+   font-size: 4rem;
+   
+}
 
+.buttons-box {
+   width: 45%;
+   display: flex;
+   justify-content: space-between;
+}
+
+.search-alert-button {
+   color: rgb(0, 0, 0);
+   font-size: 35px;
+   line-height: 16px;
+   padding: 27px;
+   border-radius: 37px;
+   font-family: "Lilita One", cursive;
+   font-weight: normal;
+   text-decoration: none;
+   font-style: normal;
+   font-variant: normal;
+   text-transform: none;
+   background-image: linear-gradient(
+      to right,
+      rgb(28, 110, 164) 0%,
+      rgb(145, 216, 228) 50%,
+      rgb(130, 170, 227) 100%
+   );
+   box-shadow: rgba(0, 0, 0, 0.57) 7px 10px 6px 2px;
+   border: 2px solid rgb(28, 110, 164);
+   display: inline-block;
+}
+.myButton:hover {
+   background: #1c6ea4;
+}
+.myButton:active {
+   background: #144e75;
+}
+
+.signup-button {
+   color: rgb(0, 0, 0);
+   font-size: 35px;
+   line-height: 16px;
+   padding: 27px;
+   border-radius: 37px;
+   font-family: "Lilita One", cursive;
+   font-weight: normal;
+   text-decoration: none;
+   font-style: normal;
+   font-variant: normal;
+   text-transform: none;
+   background-image: linear-gradient(
+      to right,
+      rgb(28, 110, 164) 0%,
+      rgb(35, 136, 203) 50%,
+      rgb(20, 78, 117) 100%
+   );
+   box-shadow: rgba(0, 0, 0, 0.57) 7px 10px 6px 2px;
+   border: 2px solid rgb(28, 110, 164);
+   display: inline-block;
+}
+.myButton:hover {
+   background: #1c6ea4;
+}
+.myButton:active {
+   background: #144e75;
+}
+
+.login-button {
+   color: rgb(0, 0, 0);
+   font-size: 35px;
+   line-height: 16px;
+   padding: 27px;
+   border-radius: 37px;
+   font-family: "Lilita One", cursive;
+   font-weight: normal;
+   text-decoration: none;
+   font-style: normal;
+   font-variant: normal;
+   text-transform: none;
+   background-image: linear-gradient(
+      to right,
+      rgb(28, 110, 164) 0%,
+      rgb(35, 136, 203) 50%,
+      rgb(20, 78, 117) 100%
+   );
+   box-shadow: rgba(0, 0, 0, 0.57) 7px 10px 6px 2px;
+   border: 2px solid rgb(28, 110, 164);
+   display: inline-block;
+}
+.myButton:hover {
+   background: #1c6ea4;
+}
+.myButton:active {
+   background: #144e75;
 }
