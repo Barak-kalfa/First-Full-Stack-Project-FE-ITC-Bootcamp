@@ -19,8 +19,12 @@ function PetModal() {
 
    return (
       <div>
-         <div className="pet-modal-card" onClick={handleShow}>
-            <img className="pet-card-img" src={pet.picture} />
+         <div className="pet-modal-card">
+            <img
+               className="pet-card-img"
+               src={pet.picture}
+               onClick={handleShow}
+            />
             <div className="d-flex justify-content-between">
                <div> {pet.name}</div>
                <div> {pet.adoptionStatus}</div>

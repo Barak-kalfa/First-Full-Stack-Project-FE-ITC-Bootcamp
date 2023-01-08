@@ -1,0 +1,31 @@
+.UsersList {
+   width: 100%;
+   margin-top: 3rem;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+table {
+   width: 90%;
+   height: 200px;
+   font-size: 2rem;
+   font-family: "Lilita One", cursive;
+   -webkit-box-shadow: 12px 19px 8px 0px rgba(0, 0, 0, 0.27);
+   box-shadow: 12px 19px 8px 0px rgba(0, 0, 0, 0.27);
+   
+}
+
+th {
+   border-bottom: 3px solid black;
+   text-align: center;
+   background-color: #ffffff;
+   padding: 15px;
+}
+
+td {
+     border-bottom: 1px dotted black;
+     padding: 5px;
+   text-align: center;
+   background-color: #ffffff;
+}

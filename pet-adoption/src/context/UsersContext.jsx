@@ -13,6 +13,7 @@ export function UsersProvider({ children }) {
    console.log("UsersProvider RENDERS");
    const [currentUser, setCurrentUser] = useState();
    const { getUserPets } = usePetContext();
+   
    const setUser = async () => {
       const userId = localStorage.getItem("userId");
       if (!currentUser && userId) {

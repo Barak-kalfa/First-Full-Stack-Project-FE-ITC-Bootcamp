@@ -11,7 +11,7 @@ function LandingPage() {
    return (
       <div className="LandingPage d-flex flex-column align-items-center">
          <div className="landing-page-header">
-            <h1>Find A Furry Friend</h1>
+            <h1>Furry Friends</h1>
          </div>
          <div className="content-box">
             <h1>Welcome </h1>

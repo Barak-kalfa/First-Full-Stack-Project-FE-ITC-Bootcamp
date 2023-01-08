@@ -14,7 +14,7 @@ function LoginModal() {
    const [error, setError] = useState("");
    const [loading, setLoading] = useState(false);
    const navigate = useNavigate();
-   const { setUser} = useUsersContext();
+   const { setUser, setCurrentUser } = useUsersContext();
 
    const handleSubmit = async (e) => {
       e.preventDefault();
@@ -29,6 +29,7 @@ function LoginModal() {
          if (loggedUser.error) {
             setError(loggedUser.error);
          } else {
+            setCurrentUser(loggedUser)
             setUser(loggedUser);
             localStorage.setItem("userId", loggedUser.userId);
               navigate("/search");

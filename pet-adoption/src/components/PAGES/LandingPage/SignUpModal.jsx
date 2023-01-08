@@ -78,7 +78,7 @@ function SignUpModal() {
                         <Form.Label>Phone Number</Form.Label>
                         <Form.Control
                            className="textInput"
-                           type="text"
+                           type="number"
                            ref={phoneRef}
                            required
                         />

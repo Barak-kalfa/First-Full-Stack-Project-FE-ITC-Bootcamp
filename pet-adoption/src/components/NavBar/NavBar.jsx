@@ -7,16 +7,20 @@ function NavBar() {
    const {currentUser} = useUsersContext()
      return (
         <div className="Nav-bar">
-           <Navbar className="w-100">
-              <Container>
+           <div className="upper-bar"></div>
+           <Navbar className="w-100 ps-5">
+              {`${currentUser?.firstName} ${currentUser?.lastName}`}
+              <Container className="nav-container ">
                  <Navbar.Brand>
-                    <img
-                       alt=""
-                       src="../images/logo.jpg"
-                       width="30"
-                       height="30"
-                       className="d-inline-block align-top"
-                    />
+                    <a href="/">
+                       <img
+                          alt=""
+                          src="http://localhost:8080/petPicture-1673173754025-604001665.jpg"
+                          width="320"
+                          height="70"
+                          className="d-inline-block align-top "
+                       />
+                    </a>
                  </Navbar.Brand>
                  <Nav className="me-auto nav-links">
                     <Nav.Link href="search">Search</Nav.Link>

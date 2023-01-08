@@ -46,7 +46,9 @@ export function PetProvider({ children }) {
 
    const getPetsList = async () => {
       try {
-         const data = await axios.get("http://localhost:8080/pets/all");
+         const data = await axios.get("http://localhost:8080/pets/all", {
+            withCredentials: true,
+         });
          setPetsList(data.data);
       } catch (err) {
          console.log(err.message);

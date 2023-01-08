@@ -2,6 +2,7 @@
    width: 100%;
    height: 70%;
    border-radius: 15px;
+    cursor: pointer;
 }
 
 .pet-modal-card {
@@ -49,7 +50,6 @@
 
 .PetCard:hover {
    transform: scale(1.2);
-   cursor: pointer;
 }
 
 .pet-img-modal {

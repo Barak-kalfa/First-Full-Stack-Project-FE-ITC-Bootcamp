@@ -1,20 +1,26 @@
-.Nav-bar{
-     background-color: #ffffff;
-     height: 4.5rem;
-     width: 100%;
-     box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.38);
-     font-family: "Lilita One", cursive;
-     padding: 0 1rem;
-     display: flex;
-     justify-content: space-between;
-     font-size: 25px;
-
+.Nav-bar {
+   background-color: #ffffff;
+   height: 7.5rem;
+   box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.38);
+   font-family: "Lilita One", cursive;
+   display: flex;
+   font-size: 25px;
+   flex-direction: column;
+   width: 100%;
 }
 
+.upper-bar {
+   height: 50px;
+   background-color: #ffcc37;
+}
+.nav-container {
+   display: flex;
+   justify-content: space-between;
+   width: 100%;
+}
 .nav-links {
-     width: 100%;
-     display: flex;
-     justify-content: space-around;
-   
-     
+   width: 100%;
+   display: flex;
+   justify-content: space-around;
+   color: black;
 }

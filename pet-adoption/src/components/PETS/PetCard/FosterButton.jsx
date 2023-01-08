@@ -21,7 +21,8 @@ function FosterButton() {
       try {
          const res = await axios.post(
             "http://localhost:8080/pets/foster",
-            petUserId
+            petUserId,
+            { withCredentials: true }
          );
          if (res) {
             const newList = petsList;
