@@ -30,7 +30,7 @@ function LoginModal() {
             setError(loggedUser.error);
          } else {
             setCurrentUser(loggedUser)
-            setUser(loggedUser);
+            // setUser(loggedUser);
             localStorage.setItem("userId", loggedUser.userId);
               navigate("/search");
          }

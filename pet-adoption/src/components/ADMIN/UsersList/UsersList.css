@@ -13,7 +13,8 @@ table {
    font-family: "Lilita One", cursive;
    -webkit-box-shadow: 12px 19px 8px 0px rgba(0, 0, 0, 0.27);
    box-shadow: 12px 19px 8px 0px rgba(0, 0, 0, 0.27);
-   
+   margin-bottom: 2rem;
+
 }
 
 th {
@@ -23,9 +24,39 @@ th {
    padding: 15px;
 }
 
-td {
-     border-bottom: 1px dotted black;
-     padding: 5px;
+.user-row:hover {
+   transform: scale(1.001);
+   cursor: pointer;
+   box-shadow: 12px 19px 8px 0px rgba(0, 0, 0, 0.27);
+}
+
+.user-row {
    text-align: center;
    background-color: #ffffff;
+}
+
+.user-row button {
+   color: rgb(255, 255, 255);
+   margin-top: 1rem;
+   width: 8rem;
+   font-size: 14px;
+   line-height: 14px;
+   padding: 10px;
+   border-radius: 33px;
+   font-family: "Lilita One", cursive;
+   font-weight: normal;
+   text-decoration: none;
+   font-style: normal;
+   font-variant: normal;
+   text-transform: none;
+   background-color: #ffcc37;
+   border: none;
+   box-shadow: rgba(0, 0, 0, 0.3) 5px 7px 15px 5px;
+   display: inline-block;
+   margin: 15px;
+}
+
+.user-row td button:hover {
+   transform: scale(1.2);
+   color:rgb(65, 66, 65);
 }

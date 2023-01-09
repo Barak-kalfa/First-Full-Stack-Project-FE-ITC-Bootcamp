@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import LoginModal from "./LoginModal";
 import SignUpModal from "./SignUpModal";
 import { Nav } from "react-bootstrap";
@@ -6,8 +6,10 @@ import "./LandingPage.css";
 import RegistrationAlert from "./RegistrationAlert";
 import Footer from "../../Footer/Footer";
 import { usePetContext } from "../../../context/PetsContext";
+import { useUsersContext } from "../../../context/UsersContext";
 
 function LandingPage() {
+
    return (
       <div className="LandingPage d-flex flex-column align-items-center">
          <div className="landing-page-header">

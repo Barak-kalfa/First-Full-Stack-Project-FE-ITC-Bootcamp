@@ -19,25 +19,45 @@ function PetInfoModal() {
          </Button>
 
          <Modal show={show} onHide={handleClose}>
-            <div className="p-5 pet-info-modal">
-               <h4>Name: {pet.name}</h4>
-               <div>
-                  <img className="pet-img-modal" src={pet.picture} />
+            <div className="p-2 pet-info-modal">
+               <div className="pet-info">
+                  <h4>
+                     Type: <h5>{pet.type}</h5>
+                  </h4>
+                  <h4>
+                     Breed : <h5>{pet.breed}</h5>
+                  </h4>
+                  <h4>
+                     Adoption Status: <h5>{pet.adoptionStatus}</h5>
+                  </h4>
+                  <h4>
+                     Height: <h5>{pet.height}</h5>
+                  </h4>
+                  <h4>
+                     Weight: <h5>{pet.weight}</h5>
+                  </h4>
+                  <h4>
+                     Color: <h5>{pet.color}</h5>
+                  </h4>
+                  <h4>
+                     Hypoallergenic : <h5>{pet.hypoallergenic}</h5>
+                  </h4>
+                  <h4>
+                     Dietary Restrictions : <h5>{pet.dietary}</h5>
+                  </h4>
                </div>
-               <h5>Type: {pet.type}</h5>
-               <h5>Adoption Status: {pet.adoptionStatus}</h5>
-               <h5>Height: {pet.height}</h5>
-               <h5>Weight: {pet.weight}</h5>
-               <h5>Color: {pet.color}</h5>
-               <h5>Bio: {pet.bio}</h5>
-               <h5>Hypoallergenic : {pet.hypoallergenic}</h5>
-               <h5> Dietary Restrictions : {pet.dietary}</h5>
-               <h5>Breed : {pet.breed}</h5>
-               {currentUser.isAdmin && (
-                  <Button variant="primary" onClick={handleClose}>
-                     Save Changes
-                  </Button>
-               )}
+               <div className="pet-modal-right ">
+                  <h4>Name: {pet.name}</h4>
+                  <img className="pet-img-modal" src={pet.picture} />
+                  <h4>
+                     Bio: <h5>{pet.bio}</h5>
+                  </h4>
+                  {currentUser.isAdmin && (
+                     <Button variant="primary" onClick={handleClose}>
+                        Save Changes
+                     </Button>
+                  )}
+               </div>
             </div>
          </Modal>
       </>

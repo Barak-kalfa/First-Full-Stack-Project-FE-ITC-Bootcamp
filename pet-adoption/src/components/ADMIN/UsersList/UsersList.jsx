@@ -1,12 +1,22 @@
 import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
-import UserCard from "../UserInfo/UserCard";
-import "./UsersList.css"
-
+import { Button, Modal, UserCard } from "react-bootstrap";
+import "./UsersList.css";
+import { usePetContext } from "../../../context/PetsContext";
+import UserPets from "../../USER/UserPets/UserPets";
+import UserWishList from "../../USER/UserWishList/UserWishList";
 
 function UsersList() {
    const [usersList, setUsersList] = useState();
+   const { getUserPets, userSaves } = usePetContext();
+   const [fullscreen, setFullscreen] = useState(true);
+   const [show, setShow] = useState(false);
+   const [modalUserPets, setModalUserPets] = useState();
+
+   function handleShow() {
+      setShow(true);
+   }
 
    const getUsers = async () => {
       try {
@@ -19,31 +29,72 @@ function UsersList() {
       }
    };
 
+   const getPetsOfUser = async (userId) => {
+      const pets = await getUserPets(userId);
+      await setModalUserPets(pets)
+      console.log('userModal:', modalUserPets.userPets);
+   };
    useEffect(() => {
       getUsers();
    }, []);
 
+      const handleModal = async (e)=>{
+         try {
+            await getPetsOfUser(e.target.parentNode.id);
+            console.log(modalUserPets?.userPets);
+            handleShow()
+         }catch(err){
+            console.log(err);
+         }
+      }
    return (
       <div className="UsersList">
-         <table >
-            <tr>
-               <th>User ID</th>
-               <th>First Name</th>
-               <th>Last Name</th>
-               <th>Email Address</th>
-               <th>Phone Number</th>
-            </tr>
-            {usersList?.map((user, key) => {
-               return (
-                  <tr key={uuidv4()}>
-                     <td>{user.userId}</td>
-                     <td>{user.firstName}</td>
-                     <td>{user.lastName}</td>
-                     <td>{user.email}</td>
-                     <td>{user.phone}</td>
-                  </tr>
-               );
-            })}
+         <Modal
+            show={show}
+            fullscreen={fullscreen}
+            onHide={() => setShow(false)}
+         >
+            <Modal.Header closeButton>
+               <Modal.Title>User's Pets</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+               <UserPets userPets={modalUserPets?.userPets} />
+               <UserWishList userSaves={modalUserPets?.userSaves}/>
+            </Modal.Body>
+         </Modal>
+         <table>
+            <thead>
+               <tr>
+                  <th>User ID</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Email Address</th>
+                  <th>Phone Number</th>
+                  <th></th>
+               </tr>
+            </thead>
+            <tbody>
+               {usersList?.map((user, key) => {
+                  return (
+                     <tr
+                        className="user-row"
+                        onClick={(e) => {
+                           handleModal(e);
+                        }}
+                        key={uuidv4()}
+                        id={user.userId}
+                        user={user.userId}
+                     >
+                        <td>{user.userId}</td>
+                        <td>{user.firstName}</td>
+                        <td>{user.lastName}</td>
+                        <td>{user.email}</td>
+                        <td>{user.phone}</td>
+                        <td></td>
+                     </tr>
+                  );
+               })}
+            </tbody>
          </table>
       </div>
    );
@@ -51,8 +102,10 @@ function UsersList() {
 
 export default UsersList;
 
-{/* <div>
+{
+   /* <div>
    {usersList
       ? usersList.map((user) => <UserCard key={uuidv4()} user={user} />)
       : "Loading Users List"}
-</div>; */}
+</div>; */
+}

@@ -5,6 +5,7 @@ import UserWishList from "../../USER/UserWishList/UserWishList";
 import NavBar from "../../NavBar/NavBar";
 import { useUsersContext } from "../../../context/UsersContext";
 import { usePetContext } from "../../../context/PetsContext";
+import "./MyPetsPage.css"
 
 function MyPetsPage() {
    // console.log("MyPetsPage Render");
@@ -12,24 +13,23 @@ function MyPetsPage() {
    const [toggleLists, setToggleLists] = useState(true);
    const { currentUser } = useUsersContext()
    const { userPets, getUserPets, userSaves } = usePetContext();
-
    const handleToggle = () => {
       setToggleLists(!toggleLists);
    };
 
    useEffect(() => {
-      currentUser && getUserPets(currentUser?.userId);
+  if (currentUser)getUserPets(currentUser.userId);
    }, [currentUser]);
    
 
    return (
-      <div>
+      <div className="MyPetsPage">
          <NavBar />
-         <Button onClick={handleToggle}> Toggle Between Lists</Button>
+         <button onClick={handleToggle}> Toggle Between Lists</button>
          {toggleLists ? (
             <UserPets userPets={userPets} />
          ) : (
-            <UserWishList userPets ={userPets}/>
+            <UserWishList userSaves={userSaves} />
          )}
       </div>
    );

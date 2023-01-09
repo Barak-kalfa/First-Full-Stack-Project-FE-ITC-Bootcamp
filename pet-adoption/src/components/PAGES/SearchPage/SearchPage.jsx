@@ -5,8 +5,7 @@ import "./SearchPageCSS.css";
 
 function SearchPage() {
    const { currentUser } = useUsersContext();
-
-
+   
    return (
       <div className="Search-Page">
          <NavBar />

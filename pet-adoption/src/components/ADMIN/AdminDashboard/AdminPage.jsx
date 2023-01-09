@@ -17,6 +17,7 @@ function AdminPage() {
          <NavBar />
          <div className="admin-buttons">
             <AddPet />
+            {toggleLists ? <h1>Pets List</h1> : <h1>Users List</h1>}
             <button className="admin-button" onClick={handleToggle}>
                Toggle Between Lists
             </button>

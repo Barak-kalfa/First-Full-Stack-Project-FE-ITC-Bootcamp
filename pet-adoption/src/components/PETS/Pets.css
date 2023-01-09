@@ -25,9 +25,15 @@
 }
 
 .pet-info-modal{
+   background-color: #FFFBAC;
    display: flex;
    flex-direction: column;
    font-family: "Lilita One", cursive;
+   border-radius: 6px;
+   border: 20px solid #ffcc37;
+   width: 45rem;
+   height: 90vh;
+   flex-wrap: wrap;
 }
 .pet-card-menu {
    display: flex;
@@ -83,4 +89,26 @@
 .wish-button{
    width: 3rem;
   
+}
+.pet-info{
+
+display: flex;
+flex-direction: column;
+flex-wrap: wrap;
+}
+.pet-info h4 {
+   width: 15rem;
+   
+}
+.pet-info h5{
+   font-size: 1em;
+   font-family: 'Courier New', Courier, monospace;
+   font-weight: bold;
+}
+.pet-modal-right{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+  max-width: 400px; 
 }

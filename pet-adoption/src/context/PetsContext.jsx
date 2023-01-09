@@ -12,16 +12,15 @@ export function PetProvider({ children }) {
    console.log("PetProvider RENDERS");
    const [petsList, setPetsList] = useState([]);
    const [userPets, setUsersPets] = useState([]);
-   const [userSaves, setUserSaves] = useState([])
+   const [userSaves, setUserSaves] = useState([]);
    // const [searchPets, setSearchPets] = useState()
    const [listToShow, setListToShow] = useState();
-
+   const { currentUser } = useUsersContext();
    const addPet = (newPet) => {
       const newPetsList = [...petsList, newPet];
       setPetsList(newPetsList);
    };
- 
-   
+
    const getSearchPets = async (searchInput) => {
       try {
          // const pets = await axios.get(
@@ -39,10 +38,10 @@ export function PetProvider({ children }) {
       setUserSaves(newSavedList);
    };
 
-      const removeSavedPetLocaly = (petId) => {
-         const newSavedList = userSaves.filter((pet) => pet.petId !== petId);
-         setUserSaves(newSavedList);
-      };
+   const removeSavedPetLocaly = (petId) => {
+      const newSavedList = userSaves.filter((pet) => pet.petId !== petId);
+      setUserSaves(newSavedList);
+   };
 
    const getPetsList = async () => {
       try {
@@ -55,30 +54,32 @@ export function PetProvider({ children }) {
       }
    };
 
-   useEffect(() => {
-      getPetsList();
-   }, []);
-
    const getUserPets = async (userId) => {
       try {
-         const res = await axios.get(`http://localhost:8080/pets/user/${userId}`);
+         const res = await axios.get(
+            `http://localhost:8080/pets/user/${userId}`
+         );
          setUsersPets(res.data.pets);
          const saveList = res.data.savedPets;
-         const arr = []
-         saveList.map(async(pet) =>{
-            const savedPet = await axios.get(`http://localhost:8080/pets/${pet.petId}`);
-            arr.push(savedPet.data[0]);   
-         })
-            setUserSaves(arr);
-
-         return 
-      
+         const arr = [];
+         saveList.map(async (pet) => {
+            const savedPet = await axios.get(
+               `http://localhost:8080/pets/${pet.petId}`
+            );
+            arr.push(savedPet.data[0]);
+         });
+         setUserSaves(arr);
+         return { userPets: userPets, userSaves: userSaves };
       } catch (err) {
          console.log(err);
       }
    };
 
-
+   useEffect(() => {
+      getPetsList();
+      if (currentUser) getUserPets();
+      
+   }, []);
 
    const value = {
       addPet,

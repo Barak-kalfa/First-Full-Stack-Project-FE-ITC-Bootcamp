@@ -12,20 +12,30 @@ export function useUsersContext() {
 export function UsersProvider({ children }) {
    console.log("UsersProvider RENDERS");
    const [currentUser, setCurrentUser] = useState();
-   const { getUserPets } = usePetContext();
-   
-   const setUser = async () => {
-      const userId = localStorage.getItem("userId");
-      if (!currentUser && userId) {
-         const user = await axios.get(`http://localhost:8080/users/${userId}`);
-         setCurrentUser(user.data);
-      }
-   };
+
 
    useEffect(() => {
       setUser();
-      currentUser && getUserPets(currentUser?.userId);
-   },[]);
+   }, []);
+
+
+   const setUser = async () => {
+      const userId = localStorage.getItem("userId");
+      if (userId) {
+         try {
+
+            const user = await axios.get(
+               `http://localhost:8080/users/${userId}`
+            );
+            setCurrentUser(user.data);
+            return true;
+         } catch (err) {
+            console.log(err);
+         }
+      }
+   };
+
+
 
    const value = {
       currentUser,
