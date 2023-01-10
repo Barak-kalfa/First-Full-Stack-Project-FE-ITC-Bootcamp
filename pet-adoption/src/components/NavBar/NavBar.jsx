@@ -22,12 +22,11 @@ function NavBar() {
       <div className="Nav-bar">
          <div className="upper-bar"></div>
          <Navbar className="w-100 ps-5">
-            {`${currentUser?.firstName} ${currentUser?.lastName}`}
             <Container className="nav-container ">
                <Navbar.Brand>
                   <a href="/">
                      <img
-                        alt=""
+                        alt="site logo"
                         src="http://localhost:8080/petPicture-1673173754025-604001665.jpg"
                         width="320"
                         height="70"
@@ -36,9 +35,13 @@ function NavBar() {
                   </a>
                </Navbar.Brand>
                <Nav className="me-auto nav-links">
-                  <Nav.Link href="search">Search</Nav.Link>
-                  <Nav.Link href="profile">View Profile</Nav.Link>
-                  <Nav.Link href="mypets">My Pets</Nav.Link>
+                  {currentUser && 
+                     <div>
+                        <Nav.Link href="search">Search</Nav.Link>
+                        <Nav.Link href="profile">View Profile</Nav.Link>
+                        <Nav.Link href="mypets">My Pets</Nav.Link>
+                     </div>
+                  }
                   {currentUser?.isAdmin && (
                      <Nav.Link href="admin">Admin Dashboard</Nav.Link>
                   )}

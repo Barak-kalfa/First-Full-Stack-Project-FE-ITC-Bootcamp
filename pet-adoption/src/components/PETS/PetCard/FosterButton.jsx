@@ -1,19 +1,27 @@
 import axios from "axios";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import Button from "react-bootstrap/Button";
 import { usePetContext } from "../../../context/PetsContext";
 import { useUsersContext } from "../../../context/UsersContext";
 import { updatePetsList } from "../../../Models/petsModels";
 import { AppContext } from "../../App/App";
 import "../Pets.css";
+import PetAlert from "./PetAlert";
 import { PetContext } from "./PetCard";
 
 function FosterButton() {
    const { petsList, setPetsList } = usePetContext();
    const { currentUser } = useUsersContext();
    const { pet, setPetChange, petChange } = useContext(PetContext);
+   const [show, setShow] = useState(false);
+   const handleClose = () => setShow(false);
+   const handleShow = () => setShow(true);
 
    const fosterPet = async () => {
+      if (!currentUser) {
+         handleShow();
+         return;
+      }
       const petUserId = {
          petId: pet.petId,
          userId: currentUser.userId,
@@ -32,7 +40,7 @@ function FosterButton() {
                   pet.adoptionStatus = "Fosterd";
                }
             });
-         
+
             setPetsList(newList);
             setPetChange(!petChange);
          }
@@ -43,6 +51,8 @@ function FosterButton() {
 
    return (
       <div>
+         <PetAlert show={show} handleClose={handleClose} />
+
          <Button className="FosterButton w-100" onClick={fosterPet}>
             Foster
          </Button>

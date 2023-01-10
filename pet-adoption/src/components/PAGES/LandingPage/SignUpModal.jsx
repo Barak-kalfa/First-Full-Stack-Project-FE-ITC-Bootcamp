@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { signUpUser } from "../../../Models/userModels";
 import "./LandingPage.css";
+import { useUsersContext } from "../../../context/UsersContext";
 
 function SignUpModal() {
    const emailRef = useRef();
@@ -17,6 +18,8 @@ function SignUpModal() {
    const [show, setShow] = useState(false);
    const handleClose = () => setShow(false);
    const handleShow = () => setShow(true);
+   const navigate = useNavigate();
+   const { setCurrentUser } = useUsersContext();
 
    const createUser = async (e) => {
       e.preventDefault();
@@ -33,10 +36,10 @@ function SignUpModal() {
             email: emailRef.current.value,
             password: passwordRef.current.value,
          };
-         const res = await signUpUser(newUser);
-         console.log(res);
-         setError("");
-         // change to equal login
+         const loggedUser = await signUpUser(newUser);
+         setCurrentUser(loggedUser);
+         localStorage.setItem("userId", loggedUser.userId);
+         navigate("/search");
       } catch (error) {
          console.log(error.message);
          setError("Failed To Create An Account :(");

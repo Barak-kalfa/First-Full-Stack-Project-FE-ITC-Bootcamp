@@ -57,7 +57,8 @@ export function PetProvider({ children }) {
    const getUserPets = async (userId) => {
       try {
          const res = await axios.get(
-            `http://localhost:8080/pets/user/${userId}`
+            `http://localhost:8080/pets/user/${userId}`,
+            { withCredentials: true }
          );
          setUsersPets(res.data.pets);
          const saveList = res.data.savedPets;

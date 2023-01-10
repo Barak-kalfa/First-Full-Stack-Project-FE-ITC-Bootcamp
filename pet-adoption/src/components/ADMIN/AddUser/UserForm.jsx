@@ -66,14 +66,14 @@ function UserForm() {
             name="bio"
             style={{ height: "100px" }}
          />
-         <Form.Label>Password</Form.Label>
+         {/* <Form.Label>Password</Form.Label>
          <Form.Control
             placeholder={currentUser ? currentUser.password : "Enter Password"}
             onChange={handleUserInfo}
             value={userInfo?.password}
             className="textInput"
             name="password"
-         />
+         /> */}
          <Button className="w-100 mt-2" type="submit">
             Save Changes
          </Button>

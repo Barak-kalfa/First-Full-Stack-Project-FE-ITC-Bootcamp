@@ -13,7 +13,9 @@ function ReturnPetButton() {
           const petId = pet.petId ;
           try {
                const res = await axios.post(
-                    `http://localhost:8080/pets/${petId}/return`
+                  `http://localhost:8080/pets/${petId}/return`,
+                  petId,
+                  { withCredentials: true }
                );
                const newList = petsList;
                newList.forEach((pet) => {

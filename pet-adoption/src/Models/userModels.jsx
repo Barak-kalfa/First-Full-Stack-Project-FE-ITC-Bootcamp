@@ -8,7 +8,6 @@ export async function loginUser(user) {
          user,
          { withCredentials: true }
       );
-      // FE encryption needed
       if (returendUser) {
          return returendUser.data;
       }
@@ -20,13 +19,13 @@ export async function loginUser(user) {
 
 export async function signUpUser(newUser) {
      try {
-          const userIdOkObj = await axios.post(
+          const resOk = await axios.post(
              "http://localhost:8080/users/signup",
              newUser
           );
-          if (userIdOkObj.ok) {
-             const user = loginUser(userIdOkObj.userId);
-          return user;
+          if (resOk.data.ok) {
+             const user = loginUser({email: newUser.email, password: newUser.password});
+             return user;
           }
      } catch (err) {
           console.log(err.response.data);
@@ -40,7 +39,8 @@ export async function updateUser(userInfo) {
    try {
       const res = await axios.put(
          "http://localhost:8080/users/update",
-         userInfo
+         userInfo,
+         { withCredentials: true }
       );
       if (res) {
          console.log(res);

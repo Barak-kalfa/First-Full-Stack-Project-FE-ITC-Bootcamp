@@ -1,13 +1,15 @@
 .LandingPage {
    width: 100%;
    height: 100vh;
+   background-image: url('http://localhost:8080/petPicture-1673339605812-469983004.png');
+   background-size: cover;
 }
 
 .landing-page-header{
-          background-color: #FFB100;
-     height: 10.5rem;
+          background-color: #f8e92c;
+     height: 8rem;
      width: 100%;
-     box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.38);
+     box-shadow: 0px 6px 18px rgba(0, 0, 0, 1.38);
      font-family: 'Lobster', cursive;
      padding: 0 1rem;
      display: flex;
@@ -20,7 +22,7 @@
 }
 
 .top-bar {
-   background-color: #ffb100;
+   background-color: #f8e92c;
    height: 3.5rem;
    width: 100%;
    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.38);
@@ -35,7 +37,7 @@
    
 }
 .top-bottom-bar {
-   background-color: #ffc93c;
+   background-color: #f8e92c;
    height: 2rem;
    width: 100%;
 }
@@ -56,9 +58,9 @@
 }
 
 .buttons-box {
-   width: 45%;
    display: flex;
    justify-content: space-between;
+   gap: 1rem
 }
 
 .search-alert-button {
@@ -73,12 +75,7 @@
    font-style: normal;
    font-variant: normal;
    text-transform: none;
-   background-image: linear-gradient(
-      to right,
-      rgb(28, 110, 164) 0%,
-      rgb(145, 216, 228) 50%,
-      rgb(130, 170, 227) 100%
-   );
+background-color: #0081C9;
    box-shadow: rgba(0, 0, 0, 0.57) 7px 10px 6px 2px;
    border: 2px solid rgb(28, 110, 164);
    display: inline-block;
@@ -102,12 +99,7 @@
    font-style: normal;
    font-variant: normal;
    text-transform: none;
-   background-image: linear-gradient(
-      to right,
-      rgb(28, 110, 164) 0%,
-      rgb(35, 136, 203) 50%,
-      rgb(20, 78, 117) 100%
-   );
+  background-color: #0081C9;
    box-shadow: rgba(0, 0, 0, 0.57) 7px 10px 6px 2px;
    border: 2px solid rgb(28, 110, 164);
    display: inline-block;
@@ -131,12 +123,7 @@
    font-style: normal;
    font-variant: normal;
    text-transform: none;
-   background-image: linear-gradient(
-      to right,
-      rgb(28, 110, 164) 0%,
-      rgb(35, 136, 203) 50%,
-      rgb(20, 78, 117) 100%
-   );
+background-color: #0081C9;
    box-shadow: rgba(0, 0, 0, 0.57) 7px 10px 6px 2px;
    border: 2px solid rgb(28, 110, 164);
    display: inline-block;
@@ -146,4 +133,12 @@
 }
 .myButton:active {
    background: #144e75;
+}
+
+.content-box h1{
+   background-color: #ffffffff;
+   border-radius: 25px;
+   padding: 1rem;
+   border: 3px solid ;
+   box-shadow: rgba(0, 0, 0, 0.57) 7px 10px 6px 2px;
 }

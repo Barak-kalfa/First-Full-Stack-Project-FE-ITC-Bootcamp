@@ -4,6 +4,7 @@ import { usePetContext } from "../../context/PetsContext";
 import "./SearchBar.css";
 
 function SearchBar() {
+   
    const [searchFilter, setSearchFilter] = useState([]);
    const [showFilter, setShowFilter] = useState(false);
    const [query, setQuery] = useState("");

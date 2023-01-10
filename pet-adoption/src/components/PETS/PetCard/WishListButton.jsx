@@ -6,6 +6,7 @@ import { PetContext } from "./PetCard";
 import { useUsersContext } from "../../../context/UsersContext";
 import { usePetContext } from "../../../context/PetsContext";
 import "../Pets.css";
+import PetAlert from "./PetAlert";
 
 function WishListButton() {
    const { pet, setPetChange, petChange } = useContext(PetContext);
@@ -13,18 +14,29 @@ function WishListButton() {
       usePetContext();
    const [buttonState, setButtonState] = useState(true);
    const { currentUser } = useUsersContext();
+   const [show, setShow] = useState(false);
+     const handleClose = () => setShow(false);
+     const handleShow = () => setShow(true);
+
    const AddToWishList = async () => {
-      const petUserId = {
-         petId: pet.petId,
-         userId: currentUser?.userId,
-      };
+      if (!currentUser) {
+         handleShow()
+         return
+      }
       try {
-         const res = await axios.post(
-            "http://localhost:8080/pets/save",
-            petUserId
-         );
-         addSavedPetLocaly(pet);
-         setPetChange(!petChange);
+         if (currentUser) {
+            const petUserId = {
+               petId: pet.petId,
+               userId: currentUser.userId,
+            };
+            const res = await axios.post(
+               "http://localhost:8080/pets/save",
+               petUserId,
+               { withCredentials: true }
+            );
+            addSavedPetLocaly(pet);
+            setPetChange(!petChange);
+         }
       } catch (err) {
          console.log(err.message);
       }
@@ -38,7 +50,8 @@ function WishListButton() {
          };
          console.log(petUserId);
          const res = await axios.delete(
-            `http://localhost:8080/pets/save/${pet.petId}/${currentUser?.userId}`
+            `http://localhost:8080/pets/save/${pet.petId}/${currentUser?.userId}`,
+            { withCredentials: true }
          );
          removeSavedPetLocaly(pet.petId);
          setPetChange(!petChange);
@@ -47,14 +60,15 @@ function WishListButton() {
       }
    };
 
-   useEffect(()=>{
-      userSaves.forEach((savedPet)=>{
+   useEffect(() => {
+      userSaves.forEach((savedPet) => {
          pet.petId === savedPet.petId && setButtonState(!buttonState);
-      })
-   },[])
-   
+      });
+   }, []);
+
    return (
       <div>
+         <PetAlert show={show} handleClose={handleClose} />
          {buttonState ? (
             <BsHeart className="wish-button" onClick={AddToWishList} />
          ) : (

@@ -9,7 +9,7 @@ function SearchPage() {
    return (
       <div className="Search-Page">
          <NavBar />
-         <h1>Wellcom Back {currentUser?.firstName}</h1>
+         {currentUser && <h1>Wellcom Back {currentUser?.firstName}</h1>}
          <PetList />
       </div>
    );

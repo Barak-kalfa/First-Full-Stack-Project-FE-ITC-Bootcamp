@@ -52,7 +52,7 @@ function PetInfoModal() {
                   <h4>
                      Bio: <h5>{pet.bio}</h5>
                   </h4>
-                  {currentUser.isAdmin && (
+                  {currentUser?.isAdmin && (
                      <Button variant="primary" onClick={handleClose}>
                         Save Changes
                      </Button>
