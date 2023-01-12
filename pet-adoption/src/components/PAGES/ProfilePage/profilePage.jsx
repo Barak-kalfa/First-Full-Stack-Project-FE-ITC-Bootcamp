@@ -9,6 +9,7 @@ console.log("ProfilePage RENDER");
           <div className="profile-page">
                <NavBar />
                <div className="profile-form" >
+                    Your Profile Details:
                     <UserForm  />
                </div>
           </div>

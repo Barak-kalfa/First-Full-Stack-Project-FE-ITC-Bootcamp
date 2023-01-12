@@ -19,6 +19,7 @@ function SearchBar() {
       switch (e.target.name) {
          case "type":
             searchFilter.type = e.target.value;
+            break;
          case "name":
             searchFilter.name = !searchFilter.name;
             break;
@@ -32,7 +33,6 @@ function SearchBar() {
             searchFilter.adoptionStatus = e.target.value;
             break;
       }
-      console.log(searchFilter);
    };
 
    const handleQuery = async (e) => {
@@ -96,6 +96,7 @@ function SearchBar() {
                      />
                      |<label htmlFor="adoptionStatus"> Adoption Status</label>
                      <select name="adoptionStatus" onChange={handleFilter}>
+                        <option value="">All</option>
                         <option value="Availble">Availble</option>
                         <option value="Fostered">Fostered</option>
                         <option value="Adopted">Adopted</option>

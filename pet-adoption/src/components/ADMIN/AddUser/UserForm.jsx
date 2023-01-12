@@ -36,6 +36,7 @@ function UserForm() {
 
    const handleUserInfo = (e) => {
       setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
+      console.log(userInfo);
    };
    const handleSubmit = async (e) => {
       e.preventDefault();
@@ -48,7 +49,7 @@ function UserForm() {
 
    return (
       <Form onSubmit={handleSubmit}>
-         <Form.Label>First Name</Form.Label>
+         <Form.Label className="label">First Name</Form.Label>
          <Form.Control
             placeholder={
                currentUser ? currentUser.firstName : "Enter First Name"
@@ -58,7 +59,7 @@ function UserForm() {
             className="textInput"
             name="firstName"
          />
-         <Form.Label>Last Name</Form.Label>
+         <Form.Label className="label">Last Name</Form.Label>
          <Form.Control
             placeholder={currentUser ? currentUser.lastName : "Enter Last Name"}
             onChange={handleUserInfo}
@@ -66,7 +67,7 @@ function UserForm() {
             className="textInput"
             name="lastName"
          />
-         <Form.Label>Email Address</Form.Label>
+         <Form.Label className="label">Email Address</Form.Label>
          <Form.Control
             placeholder={
                currentUser ? currentUser.email : "Enter Email Address"
@@ -76,7 +77,7 @@ function UserForm() {
             className="textInput"
             name="email"
          />
-         <Form.Label>Phone Number</Form.Label>
+         <Form.Label className="label">Phone Number</Form.Label>
          <Form.Control
             placeholder={currentUser ? currentUser.phone : "Enter Phone Number"}
             onChange={handleUserInfo}
@@ -84,7 +85,7 @@ function UserForm() {
             className="textInput"
             name="phone"
          />
-         <Form.Label>Bio</Form.Label>
+         <Form.Label className="label">Bio</Form.Label>
          <Form.Control
             placeholder={currentUser ? currentUser.bio : "Write A Short Bio"}
             onChange={handleUserInfo}
@@ -93,22 +94,24 @@ function UserForm() {
             name="bio"
             style={{ height: "100px" }}
          />
-         <Form.Label> Password</Form.Label>
+         <Form.Label className="label"> New Password</Form.Label>
          <Form.Control
-            placeholder={"Enter Password"}
+            placeholder={
+               "If You Wish To Change Your Password Enter A New Password"
+            }
+            onChange={handleUserInfo}
+            value={userInfo.newPassword}
+            className="textInput"
+            name="newPassword"
+         />
+         <Form.Label className="label"> Password</Form.Label>
+         <Form.Control
+            placeholder={"To Save Changes Please Enter Your Password"}
             onChange={handleUserInfo}
             value={userInfo.password}
             className="textInput"
             name="password"
             required
-         />
-         <Form.Label> New Password</Form.Label>
-         <Form.Control
-            placeholder={"If You Wish To Change Your Password Enter New Password"}
-            onChange={handleUserInfo}
-            value={userInfo.newPassword}
-            className="textInput"
-            name="newPassword"
          />
          <Button className="w-100 mt-2" type="submit">
             Save Changes
