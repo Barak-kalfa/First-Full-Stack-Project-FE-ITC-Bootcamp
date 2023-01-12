@@ -36,7 +36,6 @@ export async function signUpUser(newUser) {
 
 
 export async function updateUser(userInfo) {
-   console.log(userInfo);
    try {
       const res = await axios.put(
          `http://localhost:8080/users/update`,
@@ -44,11 +43,12 @@ export async function updateUser(userInfo) {
          { withCredentials: true }
       );
       if (res) {
-         console.log(res);
-         return res;
+         console.log("update Response:", res);
+         // return res;
       }
    } catch (err) {
-      console.log(err.message);
+      console.log(err?.response.data);
+      // return err
    }
 };
 

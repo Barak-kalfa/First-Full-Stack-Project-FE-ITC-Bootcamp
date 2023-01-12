@@ -4,6 +4,7 @@ import { useUsersContext } from "../../../context/UsersContext";
 import { updateUser } from "../../../Models/userModels";
 
 function UserForm() {
+   console.log('userForm Renders');
    const [userInfo, setUserInfo] = useState({
       userId: "",
       firstName: "",
@@ -35,12 +36,13 @@ function UserForm() {
 
    const handleUserInfo = (e) => {
       setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
-      console.log(userInfo);
    };
-   const handleSubmit = (e) => {
+   const handleSubmit = async (e) => {
       e.preventDefault();
-      updateUser(userInfo);
- 
+      const res =await updateUser(userInfo);
+      if (res === 'Wrong Password') {
+         console.log('Wrong Password');
+      }
     
    };
 
