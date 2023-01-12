@@ -36,9 +36,10 @@ export async function signUpUser(newUser) {
 
 
 export async function updateUser(userInfo) {
+   console.log(userInfo);
    try {
       const res = await axios.put(
-         "http://localhost:8080/users/update",
+         `http://localhost:8080/users/update`,
          userInfo,
          { withCredentials: true }
       );

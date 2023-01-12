@@ -31,8 +31,8 @@ function UsersList() {
 
    const getPetsOfUser = async (userId) => {
       const pets = await getUserPets(userId);
-      await setModalUserPets(pets)
-      console.log('userModal:', modalUserPets.userPets);
+       setModalUserPets(pets)
+    
    };
    useEffect(() => {
       getUsers();
@@ -41,7 +41,6 @@ function UsersList() {
       const handleModal = async (e)=>{
          try {
             await getPetsOfUser(e.target.parentNode.id);
-            console.log(modalUserPets?.userPets);
             handleShow()
          }catch(err){
             console.log(err);
@@ -58,7 +57,9 @@ function UsersList() {
                <Modal.Title>User's Pets</Modal.Title>
             </Modal.Header>
             <Modal.Body>
+               <h2>Adopted/Fosterd:</h2>
                <UserPets userPets={modalUserPets?.userPets} />
+               <h2>Saved:</h2>
                <UserWishList userSaves={modalUserPets?.userSaves}/>
             </Modal.Body>
          </Modal>
@@ -83,7 +84,7 @@ function UsersList() {
                         }}
                         key={uuidv4()}
                         id={user.userId}
-                        user={user.userId}
+                        user={user.FirstName}
                      >
                         <td>{user.userId}</td>
                         <td>{user.firstName}</td>

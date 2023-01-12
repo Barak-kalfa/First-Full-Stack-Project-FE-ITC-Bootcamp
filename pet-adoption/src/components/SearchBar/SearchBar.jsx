@@ -4,36 +4,43 @@ import { usePetContext } from "../../context/PetsContext";
 import "./SearchBar.css";
 
 function SearchBar() {
-   
-   const [searchFilter, setSearchFilter] = useState([]);
    const [showFilter, setShowFilter] = useState(false);
    const [query, setQuery] = useState("");
    const { getSearchPets } = usePetContext();
+   const [searchFilter] = useState({
+      type: "",
+      name: "",
+      weight: "",
+      height: "",
+      adoptionStatus: ""
+   });
 
    const handleFilter = (e) => {
-      if (!searchFilter.includes(e.target.value)) {
-         setSearchFilter([...searchFilter, e.target.value]);
-      } else {
-         setSearchFilter(
-            searchFilter.filter((category) => e.target.value !== category)
-         );
+      switch (e.target.name) {
+         case "type":
+            searchFilter.type = e.target.value;
+         case "name":
+            searchFilter.name = !searchFilter.name;
+            break;
+         case "weight":
+            searchFilter.weight = !searchFilter.weight;
+            break;
+         case "height":
+            searchFilter.height = !searchFilter.height;
+            break;
+         case "adoptionStatus":
+            searchFilter.adoptionStatus = e.target.value;
+            break;
       }
+      console.log(searchFilter);
    };
 
-      const handleQuery = async (e) => {
-         const searchInput = {searchText: query, searchFields: searchFilter }
-         e.preventDefault();
-         getSearchPets(searchInput);
-      };
+   const handleQuery = async (e) => {
+      const searchInput = { searchText: query, searchFields: searchFilter };
+      e.preventDefault();
+      getSearchPets(searchInput);
+   };
 
-      
-   // useEffect(() => {
-   //    if (query.length == 0) {
-   //       setListToShow(petsList);
-   //    }
-   // });
-
-   
    const advnacedSearch = (e) => {
       e.preventDefault();
       setShowFilter(!showFilter);
@@ -57,34 +64,42 @@ function SearchBar() {
                <button onClick={advnacedSearch}>Filter</button>
                {showFilter && (
                   <div className="advanced-search">
+                     <label htmlFor="type"> Type</label>
+                     <select name="type" onChange={handleFilter}>
+                        <option value="" defaultValue>
+                           All
+                        </option>
+                        <option value="dog">Dog</option>
+                        <option value="cat">Cat</option>
+                        <option value="other">Other</option>
+                     </select>
+                     |<label htmlFor="name"> Name</label>
                      <input
                         type="checkbox"
                         name="name"
                         value="name"
                         onClick={handleFilter}
                      />
-                     <label htmlFor="name"> Name</label>
+                     |<label htmlFor="weight"> Weight</label>
                      <input
                         type="checkbox"
                         name="weight"
                         value="weight"
                         onClick={handleFilter}
                      />
-                     <label htmlFor="weight"> Weight</label>
+                     |<label htmlFor="height"> Height</label>
                      <input
                         type="checkbox"
                         name="height"
                         value="height"
                         onClick={handleFilter}
                      />
-                     <label htmlFor="height"> Height</label>
-                     <input
-                        type="checkbox"
-                        name="adoption-status"
-                        value="adoptionStatus"
-                        onClick={handleFilter}
-                     />
-                     <label htmlFor="adoption-status"> Adoption Status</label>
+                     |<label htmlFor="adoptionStatus"> Adoption Status</label>
+                     <select name="adoptionStatus" onChange={handleFilter}>
+                        <option value="Availble">Availble</option>
+                        <option value="Fostered">Fostered</option>
+                        <option value="Adopted">Adopted</option>
+                     </select>
                   </div>
                )}
             </div>

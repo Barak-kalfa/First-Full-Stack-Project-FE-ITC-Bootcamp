@@ -4,19 +4,44 @@ import { useUsersContext } from "../../../context/UsersContext";
 import { updateUser } from "../../../Models/userModels";
 
 function UserForm() {
-   const [userInfo, setUserInfo] = useState();
+   const [userInfo, setUserInfo] = useState({
+      userId: "",
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      bio: "",
+      password: "",
+      newPassword: "",
+   });
    const { currentUser } = useUsersContext();
 
    useEffect(() => {
-      currentUser && setUserInfo(currentUser);
-   }, []);
+      if (currentUser){
+         setUserInfo({
+            userId: currentUser.userId,
+            firstName: currentUser.firstName,
+            lastName: currentUser.lastName,
+            email: currentUser.email,
+            phone: currentUser.phone,
+            bio: currentUser.bio,
+            password: "",
+            newPassword: "",
+         });
+      }
+   }, [currentUser]);
+
+   // useEffect(() => {}, [userInfo]);
 
    const handleUserInfo = (e) => {
       setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
+      console.log(userInfo);
    };
    const handleSubmit = (e) => {
       e.preventDefault();
       updateUser(userInfo);
+ 
+    
    };
 
    return (
@@ -27,7 +52,7 @@ function UserForm() {
                currentUser ? currentUser.firstName : "Enter First Name"
             }
             onChange={handleUserInfo}
-            value={userInfo?.firstName}
+            value={userInfo.firstName}
             className="textInput"
             name="firstName"
          />
@@ -35,7 +60,7 @@ function UserForm() {
          <Form.Control
             placeholder={currentUser ? currentUser.lastName : "Enter Last Name"}
             onChange={handleUserInfo}
-            value={userInfo?.lastName}
+            value={userInfo.lastName}
             className="textInput"
             name="lastName"
          />
@@ -45,7 +70,7 @@ function UserForm() {
                currentUser ? currentUser.email : "Enter Email Address"
             }
             onChange={handleUserInfo}
-            value={userInfo?.email}
+            value={userInfo.email}
             className="textInput"
             name="email"
          />
@@ -53,7 +78,7 @@ function UserForm() {
          <Form.Control
             placeholder={currentUser ? currentUser.phone : "Enter Phone Number"}
             onChange={handleUserInfo}
-            value={userInfo?.phone}
+            value={userInfo.phone}
             className="textInput"
             name="phone"
          />
@@ -61,19 +86,28 @@ function UserForm() {
          <Form.Control
             placeholder={currentUser ? currentUser.bio : "Write A Short Bio"}
             onChange={handleUserInfo}
-            value={userInfo?.bio}
+            value={userInfo.bio}
             as="textarea"
             name="bio"
             style={{ height: "100px" }}
          />
-         {/* <Form.Label>Password</Form.Label>
+         <Form.Label> Password</Form.Label>
          <Form.Control
-            placeholder={currentUser ? currentUser.password : "Enter Password"}
+            placeholder={"Enter Password"}
             onChange={handleUserInfo}
-            value={userInfo?.password}
+            value={userInfo.password}
             className="textInput"
             name="password"
-         /> */}
+            required
+         />
+         <Form.Label> New Password</Form.Label>
+         <Form.Control
+            placeholder={"If You Wish To Change Your Password Enter New Password"}
+            onChange={handleUserInfo}
+            value={userInfo.newPassword}
+            className="textInput"
+            name="newPassword"
+         />
          <Button className="w-100 mt-2" type="submit">
             Save Changes
          </Button>

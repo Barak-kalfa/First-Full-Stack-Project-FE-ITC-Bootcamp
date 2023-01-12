@@ -10,24 +10,22 @@ export function useUsersContext() {
 }
 
 export function UsersProvider({ children }) {
-   console.log("UsersProvider RENDERS");
+   console.log("UsersProvider STARTS");
+
    const [currentUser, setCurrentUser] = useState();
-
-
-   useEffect(() => {
-      setUser();
-   }, []);
-
 
    const setUser = async () => {
       const userId = localStorage.getItem("userId");
+     
       if (userId) {
          try {
-
             const user = await axios.get(
-               `http://localhost:8080/users/${userId}`
+               `http://localhost:8080/users/${userId}`,
+               {
+                  withCredentials: true,
+               }
             );
-            setCurrentUser(user.data);
+            setCurrentUser(user.data)
             return true;
          } catch (err) {
             console.log(err);
@@ -35,14 +33,16 @@ export function UsersProvider({ children }) {
       }
    };
 
-
+   useEffect(() => {
+      setUser();
+   }, []);
 
    const value = {
       currentUser,
       setCurrentUser,
       setUser,
    };
-
+   console.log("UsersProvider ENDS");
    return (
       <UsersContext.Provider value={value}>{children}</UsersContext.Provider>
    );

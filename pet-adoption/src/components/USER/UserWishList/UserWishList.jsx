@@ -4,10 +4,9 @@ import "../../PETS/Pets.css";
 
 function UserWishList({ userSaves }) {
    return (
-      <div className="user-wish-list">
-         <h1>Your wish List </h1>
+      <div className="user-wish-list d-flex flex-row flex-wrap">
          {userSaves.length === 0 ? (
-            <p> You Wish list Is Empty</p>
+            <p> No Saved Pets</p>
          ) : (
             userSaves.map((pet) => {
                // console.log(pet);

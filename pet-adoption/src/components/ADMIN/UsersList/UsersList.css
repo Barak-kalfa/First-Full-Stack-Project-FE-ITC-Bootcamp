@@ -28,13 +28,17 @@ th {
    transform: scale(1.001);
    cursor: pointer;
    box-shadow: 12px 19px 8px 0px rgba(0, 0, 0, 0.27);
+   background-color: #ffcc37;
 }
 
 .user-row {
    text-align: center;
    background-color: #ffffff;
 }
+.user-row td {
+   padding: 1rem;
 
+}
 .user-row button {
    color: rgb(255, 255, 255);
    margin-top: 1rem;

@@ -6,21 +6,27 @@
    display: flex;
    font-size: 25px;
    flex-direction: column;
-   width: 100%;
+   flex-wrap: wrap;
+   justify-content: center;
+
+   
+
+}
+.upper-bar{
+   width: 100;
 }
 
 .upper-bar {
    height: 50px;
    background-color: #ffcc37;
 }
-.nav-container {
-   display: flex;
-   justify-content: space-between;
-   width: 100%;
+.nav-links-box{
+   gap: 2rem;
 }
 .nav-links {
-   width: 100%;
    display: flex;
-   justify-content: space-around;
-   color: black;
+   gap: 3rem;
+  
 }
+
+

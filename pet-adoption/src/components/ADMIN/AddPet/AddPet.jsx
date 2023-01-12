@@ -19,7 +19,7 @@ function AddPet() {
               aria-labelledby="example-custom-modal-styling-title"
            >
               <Modal.Body className="add-pet-form-modal">
-                 <AddPetForm />
+                 <AddPetForm setShow={setShow}/>
               </Modal.Body>
            </Modal>
         </>

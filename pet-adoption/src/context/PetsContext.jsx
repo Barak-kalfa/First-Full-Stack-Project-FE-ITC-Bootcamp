@@ -14,7 +14,7 @@ export function PetProvider({ children }) {
    const [userPets, setUsersPets] = useState([]);
    const [userSaves, setUserSaves] = useState([]);
    // const [searchPets, setSearchPets] = useState()
-   const [listToShow, setListToShow] = useState();
+   const [listToShow, setListToShow] = useState([]);
    const { currentUser } = useUsersContext();
    const addPet = (newPet) => {
       const newPetsList = [...petsList, newPet];
@@ -23,11 +23,15 @@ export function PetProvider({ children }) {
 
    const getSearchPets = async (searchInput) => {
       try {
-         // const pets = await axios.get(
-         //    "http://localhost:8080/pets/search",
-         //    searchInput
-         // );
-         // setListToShow(pets);
+         const pets = await axios.post(
+            "http://localhost:8080/pets/search",
+            searchInput,
+            {
+               withCredentials: true
+            }
+         );
+         console.log('xxxp', pets);
+         setListToShow(pets.data);
       } catch (err) {
          console.log(err);
       }
@@ -46,7 +50,7 @@ export function PetProvider({ children }) {
    const getPetsList = async () => {
       try {
          const data = await axios.get("http://localhost:8080/pets/all", {
-            withCredentials: true,
+            withCredentials: true
          });
          setPetsList(data.data);
       } catch (err) {

@@ -6,9 +6,9 @@ import "../../PETS/Pets.css"
 function UserPets({ userPets }) {
 
    return (
-      <div className="user-pets-list">
+      <div className="user-pets-list d-flex flex-row flex-wrap">
          {userPets?.length === 0 ? (
-            <p>You Currently Have No Pets</p>
+            <p> No Adopted or Fosterd Pets</p>
          ) : (
             userPets?.map((pet) => <PetCard key={uuidv4()} pet={pet} />)
          )}

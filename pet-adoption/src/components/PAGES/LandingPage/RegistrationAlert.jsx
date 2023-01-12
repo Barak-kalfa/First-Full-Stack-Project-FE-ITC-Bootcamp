@@ -1,14 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Alert from "react-bootstrap/Alert";
 import { useNavigate } from "react-router-dom";
 import { Modal, Button } from "react-bootstrap";
 import "./LandingPage.css";
+import { useUsersContext } from "../../../context/UsersContext";
 
 export default function RegistrationAlert() {
    const [show, setShow] = useState(false);
    const handleClose = () => setShow(false);
-   const handleShow = () => setShow(true);
+   const { currenUser } = useUsersContext();
    const navigate = useNavigate();
+
+
+   const handleShow = () => {
+      if (currenUser) {
+         navigate("/");
+      } else {
+         setShow(true);
+      }
+   };
+
    return (
       <>
          <Button

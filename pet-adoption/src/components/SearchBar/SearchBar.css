@@ -56,6 +56,8 @@
    gap: 1rem;
     font-family: "Lilita One", cursive;
      margin-left: 5rem;
+     flex-wrap: wrap;
+     margin-top: 1rem;
 }
 .dropdown {
      display: flex;

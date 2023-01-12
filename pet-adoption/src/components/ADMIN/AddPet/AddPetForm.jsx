@@ -5,7 +5,8 @@ import Form from "react-bootstrap/Form";
 import { usePetContext } from "../../../context/PetsContext";
 import { AppContext } from "../../App/App";
 import "./addPet.css"
-function AddPetForm({ pet }) {
+
+function AddPetForm({ setShow }) {
    const { addPet } = usePetContext();
    const [petPicture, setPetPicture] = useState();
    const [petInfo, setPetInfo] = useState({
@@ -36,8 +37,8 @@ function AddPetForm({ pet }) {
          petData.append("petPicture", petPicture);
          for (let key in petInfo) petData.append(key, petInfo[key]);
          const res = await axios.post("http://localhost:8080/pets", petData);
-         console.log(res);
-         // addPet(res.data);
+         addPet(res.data);
+         setShow(false)
       } catch (err) {
          console.log(err.message);
       }

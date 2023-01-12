@@ -10,15 +10,14 @@ import { usePetContext } from "../../context/PetsContext";
 
 function PetList() {
    
-
    const { listToShow, petsList } = usePetContext();
-
+   console.log(listToShow);
    return (
       <div className="pet-list">
          <SearchBar className="search-bar" />
 
          <div className="d-flex flex-wrap">
-            {listToShow
+            {listToShow.length > 0
                ? listToShow.map((pet) => <PetCard key={uuidv4()} pet={pet} />)
                : petsList.map((pet) => <PetCard key={uuidv4()} pet={pet} />)}
          </div>
