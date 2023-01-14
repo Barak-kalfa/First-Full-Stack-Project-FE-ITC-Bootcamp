@@ -1,30 +1,32 @@
-import { Navbar, Nav, Container } from "react-bootstrap";
-import { useUsersContext } from "../../context/UsersContext";
-import { cookies, remove } from "react-cookie";
+import { Navbar, Nav } from "react-bootstrap";
 import axios from "axios";
-import "../App/App.css";
-import "./NavBarCSS.css";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
+import { useUsersContext } from "../../context/UsersContext";
+
+import "../App/App.css";
+import "./NavBarCSS.css";
+
 function NavBar() {
-   const {currentUser} = useUsersContext()
-   const [toggleNav, setToggleNav] = useState(false)
+   const { currentUser } = useUsersContext();
+   const [toggleNav, setToggleNav] = useState(false);
    const navigate = useNavigate();
-   const logOut = async(e) => {
+
+   const logOut = async (e) => {
       try {
          localStorage.clear();
-         const res = await axios.get('http://localhost:8080/users/logout')
-         navigate("/profile");
+         const res = await axios.get("http://localhost:8080/users/logout");
+         navigate("/");
       } catch (err) {
          console.log(err);
       }
    };
 
-   useEffect(()=>{
+   useEffect(() => {
       const userId = localStorage.getItem("userId");
-      userId && setToggleNav(!toggleNav)
-   },[])
+      userId && setToggleNav(!toggleNav);
+   }, []);
 
    return (
       <div className="w-100">

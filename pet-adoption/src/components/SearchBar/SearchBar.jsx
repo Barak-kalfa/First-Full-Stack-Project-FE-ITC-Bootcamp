@@ -1,19 +1,23 @@
-import { useState, useEffect } from "react";
-import { Button, Dropdown, DropdownButton, Form } from "react-bootstrap";
+import { useState } from "react";
 import { usePetContext } from "../../context/PetsContext";
+import MessageModal from "../MessageModal/MessageModal";
 import "./SearchBar.css";
 
 function SearchBar() {
+   const [show, setShow] = useState(false);
+   const handleShow = () => setShow(true);
+   const [message, setMessage] = useState("");
+
    const [showFilter, setShowFilter] = useState(false);
    const [query, setQuery] = useState("");
    const { getSearchPets } = usePetContext();
-   const [searchFilter] = useState({
+   const searchFilter = {
       type: "",
-      name: "",
+      name: true,
       weight: "",
       height: "",
-      adoptionStatus: ""
-   });
+      adoptionStatus: "",
+   };
 
    const handleFilter = (e) => {
       switch (e.target.name) {
@@ -33,12 +37,18 @@ function SearchBar() {
             searchFilter.adoptionStatus = e.target.value;
             break;
       }
+      console.log(searchFilter);
    };
 
    const handleQuery = async (e) => {
       const searchInput = { searchText: query, searchFields: searchFilter };
       e.preventDefault();
-      getSearchPets(searchInput);
+      const res = await getSearchPets(searchInput);
+      console.log(res);
+      if (!res && query != '') {
+         setMessage("No Maching Results");
+         handleShow();
+      }
    };
 
    const advnacedSearch = (e) => {
@@ -48,6 +58,7 @@ function SearchBar() {
 
    return (
       <div>
+         <MessageModal message={message} show={show} setShow={setShow} />
          <form>
             <div className="search-box">
                <input
@@ -56,29 +67,30 @@ function SearchBar() {
                   onChange={(e) => setQuery(e.target.value)}
                   className="search-input"
                />
+               {/* <label htmlFor="type"> Type</label> */}
+               <select className="type-input" name="type" onChange={handleFilter}>
+                  <option value="" defaultValue>
+                     Type
+                  </option>
+                  <option value="dog">Dog</option>
+                  <option value="cat">Cat</option>
+                  <option value="other">Other</option>
+               </select>
                <button className="search-button" onClick={handleQuery}>
                   Search
                </button>
             </div>
             <div className="dropdown">
-               <button onClick={advnacedSearch}>Filter</button>
+               <button onClick={advnacedSearch}>Advanced Search</button>
                {showFilter && (
                   <div className="advanced-search">
-                     <label htmlFor="type"> Type</label>
-                     <select name="type" onChange={handleFilter}>
-                        <option value="" defaultValue>
-                           All
-                        </option>
-                        <option value="dog">Dog</option>
-                        <option value="cat">Cat</option>
-                        <option value="other">Other</option>
-                     </select>
                      |<label htmlFor="name"> Name</label>
                      <input
                         type="checkbox"
                         name="name"
                         value="name"
                         onClick={handleFilter}
+                        defaultChecked
                      />
                      |<label htmlFor="weight"> Weight</label>
                      <input

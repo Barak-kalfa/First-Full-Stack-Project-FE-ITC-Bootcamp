@@ -13,7 +13,6 @@ export function UsersProvider({ children }) {
    console.log("UsersProvider STARTS");
 
    const [currentUser, setCurrentUser] = useState();
-
    const setUser = async () => {
       const userId = localStorage.getItem("userId");
      

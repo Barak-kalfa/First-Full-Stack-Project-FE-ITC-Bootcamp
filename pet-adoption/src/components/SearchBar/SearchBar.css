@@ -7,7 +7,7 @@
    display: flex;
    padding-right: 1rem;
    padding-bottom: 1rem;
-    box-shadow: rgba(0, 0, 0, 0.3) 5px 7px 15px 5px;
+   box-shadow: rgba(0, 0, 0, 0.3) 5px 7px 15px 5px;
 }
 
 .search-input {
@@ -15,25 +15,51 @@
    border: none;
    background-color: #ffffff;
    font-family: "Lilita One", cursive;
-    font-size: 2rem;
+   font-size: 2rem;
 }
 
 .search-input:focus {
    outline: none;
 }
-.search-button:hover {
+.type-input:hover {
    transform: scale(1.2);
-   color:rgb(65, 66, 65);
+   color: rgb(255, 0, 0);
+}
+
+.type-input {
+   color: rgb(0, 0, 0);
+   margin-top: 1rem;
+   width: 5rem;
+   font-size: 14px;
+   line-height: 14px;
+   padding: 10px;
+   border-radius: 13px;
+   font-family: "Lilita One", cursive;
+   font-weight: normal;
+   text-decoration: none;
+   font-style: normal;
+   font-variant: normal;
+   text-transform: none;
+   background-color: #ffcc37;
+   border: none;
+   box-shadow: rgba(0, 0, 0, 0.3) 5px 7px 15px 5px;
+   display: inline-block;
+   margin-right: 1rem;
+}
+
+.search-button:hover {
+   transform: scale(1.4);
+   color: rgb(255, 0, 0);
 }
 
 .search-button {
-   color: rgb(255, 255, 255);
+   color: rgb(0, 0, 0);
    margin-top: 1rem;
    width: 4rem;
    font-size: 14px;
    line-height: 14px;
    padding: 10px;
-   border-radius: 33px;
+   border-radius: 13px;
    font-family: "Lilita One", cursive;
    font-weight: normal;
    text-decoration: none;
@@ -54,26 +80,28 @@
 .advanced-search {
    display: flex;
    gap: 1rem;
-    font-family: "Lilita One", cursive;
-     margin-left: 5rem;
-     flex-wrap: wrap;
-     margin-top: 1rem;
+   font-family: "Lilita One", cursive;
+   margin-left: 5rem;
+   flex-wrap: wrap;
+   margin-top: 1rem;
 }
 .dropdown {
-     display: flex;
-     align-items: center;
+   display: flex;
+   align-items: center;
+   flex-wrap: wrap;
+   justify-content: center;
 }
 
 .dropdown button:hover {
-   transform: scale(1.2);
-   color: rgb(65, 66, 65);
+   transform: scale(1.04);
+   color: rgb(255, 0, 0);
 }
 
 .dropdown button {
-   color: rgb(255, 255, 255);
+   color: rgb(0, 0, 0);
    margin-top: 1rem;
    width: 4rem;
-   font-size: 14px;
+   font-size: 22px;
    line-height: 14px;
    padding: 10px;
    border-radius: 33px;
@@ -93,12 +121,5 @@
    background-color: #ffcc37;
    box-shadow: rgba(0, 0, 0, 0.3) 5px 7px 15px 5px;
    display: inline-block;
+   width: 100%;
 }
-.myButton:hover {
-   background: #1c6ea4;
-}
-.myButton:active {
-   background: #144e75;
-}
-
-

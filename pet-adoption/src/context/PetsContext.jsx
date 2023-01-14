@@ -30,8 +30,9 @@ export function PetProvider({ children }) {
                withCredentials: true
             }
          );
-         console.log('xxxp', pets);
          setListToShow(pets.data);
+         const petsArr = pets.data
+         return petsArr.length !== 0; 
       } catch (err) {
          console.log(err);
       }

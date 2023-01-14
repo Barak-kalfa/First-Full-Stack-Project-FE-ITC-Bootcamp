@@ -7,7 +7,6 @@ function updatePetsList(petId, userId, petsList, setPetsList){
           }
      });
      setPetsList(newList);
-     console.log(petsList);
 }
 
 function EditPet(pet, petList){

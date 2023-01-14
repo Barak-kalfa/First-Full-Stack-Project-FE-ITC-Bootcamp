@@ -43,12 +43,12 @@ export async function updateUser(userInfo) {
          { withCredentials: true }
       );
       if (res) {
-         console.log("update Response:", res);
-         // return res;
+         console.log('ok:', res);
+         return res;
       }
    } catch (err) {
-      console.log(err?.response.data);
-      // return err
+      console.log( err.response.data);
+      return err.response.data;
    }
 };
 
