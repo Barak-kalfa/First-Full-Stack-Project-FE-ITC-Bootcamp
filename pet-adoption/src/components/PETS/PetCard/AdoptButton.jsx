@@ -46,11 +46,10 @@ function AdoptButton() {
       }
    };
    return (
-      <div>
+      <div className="adoption-button" onClick={adoptPet}>
          <PetAlert show={show} handleClose={handleClose} />
-         <Button variant="success" onClick={adoptPet}>
-            Adopt
-         </Button>
+         <img src="http://localhost:8080/petPicture-1673720944017-915535721.jpg" />
+
       </div>
    );
 }

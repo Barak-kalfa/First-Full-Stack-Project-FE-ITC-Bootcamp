@@ -15,7 +15,6 @@ function App() {
       <div className="App">
          <UsersProvider>
             <PetProvider>
-               {/* {true && <NavBar />} */}
                <BrowserRouter>
                   <Routes>
                      <Route path="/" element={<LandingPage />} />

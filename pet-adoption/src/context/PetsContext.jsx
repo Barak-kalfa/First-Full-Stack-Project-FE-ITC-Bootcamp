@@ -9,7 +9,7 @@ export function usePetContext() {
 }
 
 export function PetProvider({ children }) {
-   console.log("PetProvider RENDERS");
+   
    const [petsList, setPetsList] = useState([]);
    const [userPets, setUsersPets] = useState([]);
    const [userSaves, setUserSaves] = useState([]);

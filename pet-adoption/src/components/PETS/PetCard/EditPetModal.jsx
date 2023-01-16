@@ -1,5 +1,6 @@
 import {useState} from 'react'
-import { Button, Modal } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
+import { RiEdit2Fill } from "react-icons/ri";
 import EditPetForm from '../../ADMIN/EditPet/EditPetForm';
 
 function EditPetModal() {
@@ -8,9 +9,9 @@ function EditPetModal() {
      const handleShow = () => setShow(true);
   return (
        <div>
-            <Button variant="primary" onClick={handleShow}>
+            <RiEdit2Fill className='edit-pet-button' variant="primary" onClick={handleShow}>
                  Edit Pet
-            </Button>
+            </RiEdit2Fill>
             <Modal show={show} onHide={handleClose}>
                  <EditPetForm />
             </Modal>

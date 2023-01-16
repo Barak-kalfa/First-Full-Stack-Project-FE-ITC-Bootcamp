@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { PetContext } from "./PetCard";
+import { FiInfo } from "react-icons/fi";
 import "../Pets.css";
 import { useUsersContext } from "../../../context/UsersContext";
 
@@ -11,14 +12,19 @@ function PetInfoModal() {
    const [show, setShow] = useState(false);
    const handleClose = () => setShow(false);
    const handleShow = () => setShow(true);
-
    return (
       <>
-         <Button variant="primary" onClick={handleShow}>
+         <FiInfo
+            className="pet-info-button"
+            variant="primary"
+            onClick={handleShow}
+         >
             More About {pet.name}
-         </Button>
-
-         <Modal show={show} onHide={handleClose}>
+         </FiInfo>
+         <Modal
+            show={show}
+            onHide={handleClose}
+         >
             <div className="p-2 pet-info-modal">
                <div className="pet-info">
                   <h4>

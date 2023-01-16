@@ -36,7 +36,7 @@ function SearchBar() {
          case "adoptionStatus":
             searchFilter.adoptionStatus = e.target.value;
             break;
-      }
+         }
       console.log(searchFilter);
    };
 
@@ -45,7 +45,7 @@ function SearchBar() {
       e.preventDefault();
       const res = await getSearchPets(searchInput);
       console.log(res);
-      if (!res && query != '') {
+      if (!res && query !== '') {
          setMessage("No Maching Results");
          handleShow();
       }
@@ -67,7 +67,6 @@ function SearchBar() {
                   onChange={(e) => setQuery(e.target.value)}
                   className="search-input"
                />
-               {/* <label htmlFor="type"> Type</label> */}
                <select className="type-input" name="type" onChange={handleFilter}>
                   <option value="" defaultValue>
                      Type

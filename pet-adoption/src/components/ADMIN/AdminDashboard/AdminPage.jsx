@@ -1,16 +1,35 @@
+import { useState, useEffect } from "react";
+import axios from 'axios'
 import PetList from "../../PetList/PetList";
 import UsersList from "../UsersList/UsersList";
 import AddPet from "../AddPet/AddPet";
-import { useState } from "react";
-import { Button } from "react-bootstrap";
+
 import NavBar from "../../NavBar/NavBar";
 import "./adminDashboard.css";
 
 function AdminPage() {
    const [toggleLists, setToggleLists] = useState(true);
+   const [usersList, setUsersList] = useState();
+
    const handleToggle = () => {
       setToggleLists(!toggleLists);
    };
+
+   const getUsers = async () => {
+      console.log("xxxxx");
+      try {
+         const users = await axios.get("http://localhost:8080/users/all", {
+            withCredentials: true,
+         });
+         setUsersList(users.data);
+      } catch (err) {
+         console.log(err.message);
+      }
+   };
+
+   useEffect(() => {
+      getUsers();
+   }, []);
 
    return (
       <div>
@@ -22,7 +41,7 @@ function AdminPage() {
                Toggle Between Lists
             </button>
          </div>
-         {toggleLists ? <PetList /> : <UsersList />}
+         {toggleLists ? <PetList /> : <UsersList usersList={usersList} />}
       </div>
    );
 }

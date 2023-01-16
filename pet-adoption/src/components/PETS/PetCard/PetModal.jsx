@@ -33,11 +33,12 @@ function PetModal() {
                <WishListButton />
             </div>
          </div>
+
          <Modal className="pet-modal" show={show} onHide={handleClose}>
             <div className="pet-modal-content">
                <img className="pet-img-modal" src={pet.picture} />
                <div className="pet-card-menu">
-                  <p>Name: {pet.name}</p>
+                  <h1 className="pet-name">{pet.name}</h1>
                   <div>
                      {pet.adoptionStatus}
                      {isOwner && <p>By You!</p>}
@@ -46,6 +47,7 @@ function PetModal() {
                      {!pet.ownerId && <AdoptButton />}
                      {!pet.fosterId && !pet.ownerId && <FosterButton />}
                      {isOwner && <ReturnPetButton />}
+                     <WishListButton />
                      <PetInfoModal />
                      {currentUser?.isAdmin && <EditPetModal />}
                   </div>

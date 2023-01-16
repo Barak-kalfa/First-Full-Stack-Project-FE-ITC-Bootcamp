@@ -1,5 +1,4 @@
 import axios from "axios";
-import { usePetContext } from "./PetsContext";
 
 const { createContext, useContext, useEffect, useState } = require("react");
 
@@ -10,12 +9,12 @@ export function useUsersContext() {
 }
 
 export function UsersProvider({ children }) {
-   console.log("UsersProvider STARTS");
+
 
    const [currentUser, setCurrentUser] = useState();
+
    const setUser = async () => {
       const userId = localStorage.getItem("userId");
-     
       if (userId) {
          try {
             const user = await axios.get(
@@ -41,7 +40,7 @@ export function UsersProvider({ children }) {
       setCurrentUser,
       setUser,
    };
-   console.log("UsersProvider ENDS");
+
    return (
       <UsersContext.Provider value={value}>{children}</UsersContext.Provider>
    );
