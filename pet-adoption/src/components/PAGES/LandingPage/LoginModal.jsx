@@ -1,6 +1,6 @@
-import React, { useState, useRef, useContext } from "react";
+import React, { useState, useRef } from "react";
 import { Form, Button, Card, Alert, Modal } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useUsersContext } from "../../../context/UsersContext";
 import { loginUser } from "../../../Models/userModels";
 import "./LandingPage.css";
@@ -14,7 +14,7 @@ function LoginModal() {
    const [error, setError] = useState("");
    const [loading, setLoading] = useState(false);
    const navigate = useNavigate();
-   const { setUser, setCurrentUser } = useUsersContext();
+   const { setCurrentUser } = useUsersContext();
 
    const handleSubmit = async (e) => {
       e.preventDefault();
@@ -29,10 +29,9 @@ function LoginModal() {
          if (loggedUser.error) {
             setError(loggedUser.error);
          } else {
-            setCurrentUser(loggedUser)
-            // setUser(loggedUser);
+            setCurrentUser(loggedUser);
             localStorage.setItem("userId", loggedUser.userId);
-              navigate("/search");
+            navigate("/search");
          }
       } catch (error) {
          console.log(error.message);
@@ -80,11 +79,6 @@ function LoginModal() {
                      </Button>
                   </Form>
                </Card.Body>
-
-               <div className="w-100 text-center mt-2 mb-2">
-                  Don't have an account?
-                  <Link to="/signup"> Sign Up</Link>
-               </div>
             </Card>
             <Modal.Footer>
                <Button variant="secondary" onClick={handleClose}>

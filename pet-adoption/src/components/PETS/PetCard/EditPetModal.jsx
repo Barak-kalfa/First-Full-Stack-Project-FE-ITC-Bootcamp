@@ -1,6 +1,5 @@
 import { useContext, useState } from "react";
 import { Modal } from "react-bootstrap";
-import { RiEdit2Fill } from "react-icons/ri";
 import EditPetForm from "../../ADMIN/EditPet/EditPetForm";
 import "../Pets.css";
 import { PetContext } from "./PetCard";

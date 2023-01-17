@@ -16,7 +16,6 @@ function AdminPage() {
    };
 
    const getUsers = async () => {
-      console.log("xxxxx");
       try {
          const users = await axios.get("http://localhost:8080/users/all", {
             withCredentials: true,

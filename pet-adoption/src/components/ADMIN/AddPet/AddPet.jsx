@@ -1,6 +1,6 @@
 import AddPetForm from "./AddPetForm";
-import React, { useState } from "react";
-import {Modal, Button} from "react-bootstrap";
+import { useState } from "react";
+import {Modal} from "react-bootstrap";
 import "./addPet.css"
 
 function AddPet() {

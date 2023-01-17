@@ -8,7 +8,7 @@ import { PetContext } from "./PetCard";
 import { useContext, useEffect, useState } from "react";
 import "../Pets.css";
 
-import { Button, Modal } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import { useUsersContext } from "../../../context/UsersContext";
 
 function PetModal() {
@@ -17,6 +17,10 @@ function PetModal() {
    const [show, setShow] = useState(false);
    const handleClose = () => setShow(false);
    const handleShow = () => setShow(true);
+
+   useEffect(()=>{
+
+   },[pet.adoptionStatus])
 
    return (
       <div>

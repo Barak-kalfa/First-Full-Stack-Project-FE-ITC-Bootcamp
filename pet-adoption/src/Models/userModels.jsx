@@ -43,7 +43,6 @@ export async function updateUser(userInfo) {
          { withCredentials: true }
       );
       if (res) {
-         console.log('ok:', res);
          return res;
       }
    } catch (err) {

@@ -6,7 +6,7 @@ import "../../PETS/Pets.css"
 function UserPets({ userPets }) {
 
    return (
-      <div className="user-pets-list d-flex flex-row flex-wrap">
+      <div className="user-pets-list">
          {userPets?.length === 0 ? (
             <p> No Adopted or Fosterd Pets</p>
          ) : (

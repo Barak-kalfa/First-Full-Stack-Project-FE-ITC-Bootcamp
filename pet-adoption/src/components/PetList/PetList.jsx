@@ -2,9 +2,8 @@ import SearchBar from "../SearchBar/SearchBar";
 import PetCard from "../PETS/PetCard/PetCard";
 import { v4 as uuidv4 } from "uuid";
 import "./PetListCSS.css"
-
 import { usePetContext } from "../../context/PetsContext";
-import { useEffect } from "react";
+
 
 
 function PetList() {

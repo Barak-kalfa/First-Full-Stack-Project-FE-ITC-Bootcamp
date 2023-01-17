@@ -1,16 +1,13 @@
 import axios from "axios";
 import { useState, useContext, useEffect } from "react";
-import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { usePetContext } from "../../../context/PetsContext";
-import { EditPet } from "../../../Models/petsModels";
 import { PetContext } from "../../PETS/PetCard/PetCard";
 import MessageModal from "../../MessageModal/MessageModal";
 import "../../PETS/Pets.css"
 
 function EditPetForm() {
    const [message, setMessage] = useState("");
-   const { petsList, setPetsList } = usePetContext();
    const [show, setShow] = useState(false);
    const handleShow = () => setShow(true);
    const { pet } = useContext(PetContext);
@@ -27,13 +24,14 @@ function EditPetForm() {
       hypoallerganic: false,
       dietary: "",
       breed: "",
+      ownderId: pet.ownerId,
+      fosterId: pet.fosterId,
    });
    useEffect(() => {
       setPetInfo(pet);
    }, []);
    const handlePetInfo = (e) => {
       setPetInfo({ ...petInfo, [e.target.name]: e.target.value });
-      console.log(typeof e.target.value);
    };
    const handlePetPicture = (e) => {
       setPetPicture(e.target.files[0]);
@@ -42,17 +40,17 @@ function EditPetForm() {
       e.preventDefault();
       console.log(petInfo);
       try {
-         const res = await axios.put(
-            "http://localhost:8080/pets/edit",
-            petInfo,
-            {
-               withCredentials: true,
-            }
-         );
+               const petData = new FormData();
+               petData.append("petPicture", petPicture);
+               for (let key in petInfo) petData.append(key, petInfo[key]);
+               const res = await axios.put(
+                  "http://localhost:8080/pets/edit",
+                  petData,
+                  {
+                     withCredentials: true,
+                  }
+               );
          if (res) {
-            // const newPetsList = EditPet(petInfo, petsList);
-            // setPetsList(newPetsList)
-            // console.log(petsList);
             setMessage("Pet Has Been Updated");
             handleShow();
          }

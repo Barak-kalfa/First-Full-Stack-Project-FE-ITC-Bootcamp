@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { usePetContext } from "../../context/PetsContext";
 import MessageModal from "../MessageModal/MessageModal";
 import "./SearchBar.css";
@@ -7,7 +7,6 @@ function SearchBar() {
    const [show, setShow] = useState(false);
    const handleShow = () => setShow(true);
    const [message, setMessage] = useState("");
-
    const [showFilter, setShowFilter] = useState(false);
    const [query, setQuery] = useState("");
    const { getSearchPets } = usePetContext();
@@ -26,9 +25,6 @@ function SearchBar() {
          setSearchFilter({ ...searchFilter, [e.target.name]: e.target.value });
       }
    };
-   useEffect(() => {
-      console.log(searchFilter);
-   });
 
    const handleQuery = async (e) => {
       const searchInput = { searchText: query, searchFields: searchFilter };
@@ -76,7 +72,7 @@ function SearchBar() {
                <button onClick={advnacedSearch}>Advanced Search</button>
                {showFilter && (
                   <div className="advanced-search">
-                     |<label htmlFor="name"> Name</label>
+                     <label htmlFor="name"> Name</label>
                      <input
                         type="checkbox"
                         name="name"
@@ -102,9 +98,7 @@ function SearchBar() {
                      />
                      |<label htmlFor="adoptionStatus"> Adoption Status</label>
                      <select name="adoptionStatus" onChange={handleFilter}>
-                        <option 
-                        value="" 
-                        selected={searchFilter.adoptionStatus}>
+                        <option value="" selected={searchFilter.adoptionStatus}>
                            All
                         </option>
                         <option
@@ -135,38 +129,3 @@ function SearchBar() {
 }
 
 export default SearchBar;
-
-// <DropdownButton id="dropdown-basic-button" title="Advanced Search">
-//    <Dropdown.Item>
-//       <div className="advanced-search">
-//          <input
-//             type="checkbox"
-//             id="name"
-//             name="name"
-//             value="name"
-//          />
-//          <label for="name"> Name</label>
-//          <input
-//             type="checkbox"
-//             id="weight"
-//             name="weight"
-//             value="weight"
-//          />
-//          <label for="weight"> Weight</label>
-//          <input
-//             type="checkbox"
-//             id="height"
-//             name="height"
-//             value="height"
-//          />
-//          <label for="height"> Height</label>
-//          <input
-//             type="checkbox"
-//             id="adoption-status"
-//             name="adoption-status"
-//             value="adoption-status"
-//          />
-//          <label for="adoption-status"> Adoption Status</label>
-//       </div>
-//    </Dropdown.Item>
-// </DropdownButton>

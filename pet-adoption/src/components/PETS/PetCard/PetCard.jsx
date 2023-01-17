@@ -1,8 +1,7 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import "../Pets.css";
 import PetModal from "./PetModal";
 import { useUsersContext } from "../../../context/UsersContext";
-import { usePetContext } from "../../../context/PetsContext";
 
 export const PetContext = createContext();
 
@@ -10,7 +9,6 @@ function PetCard({ pet }) {
    const [petChange, setPetChange] = useState(false);
    const { currentUser } = useUsersContext();
    const [isOwner, setIsOwner] = useState(false);
-   const {petsList} = usePetContext()
 
    useEffect(() => {
       if (

@@ -1,4 +1,12 @@
-.MyPetsPage button {
+.my-pet-page{
+ display: flex;  
+ flex-direction: column;
+ align-items: center;
+ width: 100%;
+}
+
+
+.my-pet-page button {
    color: rgb(255, 255, 255);
    margin-top: 1rem;
    width: 8rem;
@@ -23,3 +31,4 @@
    transform: scale(1.2);
    color:rgb(65, 66, 65);
 }
+

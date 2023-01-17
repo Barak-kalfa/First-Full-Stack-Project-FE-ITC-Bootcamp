@@ -1,4 +1,3 @@
-import { Button } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import UserPets from "../../USER/UserPets/UserPets";
 import UserWishList from "../../USER/UserWishList/UserWishList";
@@ -8,7 +7,7 @@ import { usePetContext } from "../../../context/PetsContext";
 import "./MyPetsPage.css"
 
 function MyPetsPage() {
-   // console.log("MyPetsPage Render");
+
 
    const [toggleLists, setToggleLists] = useState(true);
    const { currentUser } = useUsersContext()
@@ -23,9 +22,10 @@ function MyPetsPage() {
    
 
    return (
-      <div className="MyPetsPage">
+      <div className="my-pet-page">
          <NavBar />
          <button onClick={handleToggle}> Toggle Between Lists</button>
+         {toggleLists ? <h1>Your Pets</h1> : <h1>Your Saved Pets</h1>}
          {toggleLists ? (
             <UserPets userPets={userPets} />
          ) : (

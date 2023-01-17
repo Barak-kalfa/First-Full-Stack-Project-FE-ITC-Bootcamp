@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import Alert from "react-bootstrap/Alert";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Modal, Button } from "react-bootstrap";
 import "./LandingPage.css";
@@ -56,30 +55,4 @@ export default function RegistrationAlert() {
    );
 }
 
-/* <Alert className="alert" show={show} variant="success">
-   <Alert.Heading>Hey There!</Alert.Heading>
-   <p>You shuld know that only registed users can adopt and foster pets</p>
-   <hr />
-   <div className=" d-flex justify-content-between">
-      <Button
-         onClick={() => {
-            setShow(false);
-            navigate("/search");
-         }}
-         variant="outline-success"
-      >
-         Continue without Signing Up
-      </Button>
-      <Button onClick={() => setShow(false)} variant="outline-success">
-         Ok, Lets Make It offical!
-      </Button>
-   </div>
-</Alert>;
 
-{
-   !show && (
-      <Button className="search-alert-button" onClick={() => setShow(true)}>
-         Search A Furry Friend
-      </Button>
-   );
-} */

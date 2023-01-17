@@ -1,11 +1,9 @@
 import React, { useContext, useState } from "react";
-import { Button, Modal } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import { PetContext } from "./PetCard";
 import "../Pets.css";
-import { useUsersContext } from "../../../context/UsersContext";
 
 function PetInfoModal() {
-   const { currentUser } = useUsersContext();
    const { pet } = useContext(PetContext);
   const [fullscreen, setFullscreen] = useState(true);
    const [show, setShow] = useState(false);

@@ -1,10 +1,7 @@
-import { useEffect, useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 
 function PetAlert({ show, handleClose }) {
-//    useEffect(() => {
-//       setShow(false);
-//    }, []);
+
    return (
       <>
          <Modal

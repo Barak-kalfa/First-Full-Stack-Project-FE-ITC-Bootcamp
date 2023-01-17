@@ -1,8 +1,7 @@
-import Button from "react-bootstrap/Button";
+
 import axios from "axios";
 import { useContext, useState } from "react";
 import { PetContext } from "./PetCard";
-import { AppContext } from "../../App/App";
 import { usePetContext } from "../../../context/PetsContext";
 import { useUsersContext } from "../../../context/UsersContext";
 import PetAlert from "./PetAlert";

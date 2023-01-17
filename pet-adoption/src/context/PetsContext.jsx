@@ -13,7 +13,6 @@ export function PetProvider({ children }) {
    const [petsList, setPetsList] = useState([]);
    const [userPets, setUsersPets] = useState([]);
    const [userSaves, setUserSaves] = useState([]);
-   // const [searchPets, setSearchPets] = useState()
    const [listToShow, setListToShow] = useState([]);
    const { currentUser } = useUsersContext();
    const addPet = (newPet) => {
@@ -96,7 +95,6 @@ export function PetProvider({ children }) {
       addSavedPetLocaly,
       userSaves,
       listToShow,
-      // setSearchPets,
       getSearchPets,
       removeSavedPetLocaly,
    };

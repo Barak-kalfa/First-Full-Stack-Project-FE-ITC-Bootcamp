@@ -1,9 +1,7 @@
 import axios from "axios";
-import { useState, useContext, useEffect } from "react";
-import Button from "react-bootstrap/Button";
+import { useState} from "react";
 import Form from "react-bootstrap/Form";
 import { usePetContext } from "../../../context/PetsContext";
-import { AppContext } from "../../App/App";
 import "./addPet.css";
 
 function AddPetForm({ setShow }) {
@@ -25,8 +23,6 @@ function AddPetForm({ setShow }) {
 
    const handlePetInfo = (e) => {
       setPetInfo({ ...petInfo, [e.target.name]: e.target.value });
-
-      console.log(e.target.value);
    };
    const handlePetPicture = (e) => {
       setPetPicture(e.target.files[0]);
@@ -41,7 +37,6 @@ function AddPetForm({ setShow }) {
          const res = await axios.post("http://localhost:8080/pets", petData, {
             withCredentials: true,
          });
-         console.log("add pet", res);
          addPet(res.data);
          setShow(false);
       } catch (err) {

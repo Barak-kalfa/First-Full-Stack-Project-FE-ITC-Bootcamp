@@ -1,10 +1,7 @@
 import axios from "axios";
 import { useContext, useState } from "react";
-import Button from "react-bootstrap/Button";
 import { usePetContext } from "../../../context/PetsContext";
 import { useUsersContext } from "../../../context/UsersContext";
-import { updatePetsList } from "../../../Models/petsModels";
-import { AppContext } from "../../App/App";
 import "../Pets.css";
 import PetAlert from "./PetAlert";
 import { PetContext } from "./PetCard";

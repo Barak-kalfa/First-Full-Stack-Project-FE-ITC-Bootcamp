@@ -1,7 +1,6 @@
 import { Form, Button, Card, Alert, Modal } from "react-bootstrap";
 import { useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
+import {  useNavigate } from "react-router-dom";
 import { signUpUser } from "../../../Models/userModels";
 import "./LandingPage.css";
 import { useUsersContext } from "../../../context/UsersContext";
@@ -123,10 +122,6 @@ function SignUpModal() {
                      </Button>
                   </Form>
                </Card.Body>
-               <div className="w-100 text-center mt-2 mb-2">
-                  Already have an account?
-                  <Link to="/login">Log In</Link>
-               </div>
             </Card>
             <Modal.Footer>
                <Button variant="secondary" onClick={handleClose}>

@@ -19,7 +19,6 @@ function App() {
                   <Routes>
                      <Route path="/" element={<LandingPage />} />
                      <Route path="/search" element={<SearchPage />} />
-                     ( //secure routes:)
                      <Route
                         path="/profile"
                         element={

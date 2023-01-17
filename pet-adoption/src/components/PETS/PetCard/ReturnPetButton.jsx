@@ -1,8 +1,6 @@
 import { useContext } from "react";
-import Button from "react-bootstrap/Button";
 import { PetContext } from "./PetCard";
 import axios from "axios";
-import { AppContext } from "../../App/App";
 import { usePetContext } from "../../../context/PetsContext";
 
 function ReturnPetButton() {
