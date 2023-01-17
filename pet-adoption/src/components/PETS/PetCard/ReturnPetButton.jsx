@@ -21,7 +21,7 @@ function ReturnPetButton() {
                newList.forEach((pet) => {
                     if (pet.petId === petId) {
                          pet.ownerId = "";
-                         pet.adoptionStatus = "";
+                         pet.adoptionStatus = "Availble";
                          pet.fosterId = "";
                     }
                });

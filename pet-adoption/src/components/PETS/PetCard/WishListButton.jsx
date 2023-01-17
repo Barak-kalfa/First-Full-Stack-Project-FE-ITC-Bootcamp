@@ -73,6 +73,7 @@ function WishListButton() {
             <BsHeart className="wish-button" onClick={AddToWishList} />
          ) : (
             <BsSuitHeartFill
+               style={{ color: "red" }}
                className="wish-button"
                onClick={removeFromWishList}
             />

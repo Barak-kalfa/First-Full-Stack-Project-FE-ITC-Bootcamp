@@ -82,9 +82,9 @@ function AddPetForm({ setShow }) {
             className="petInput"
          >
             <option>Adoption Status ?</option>
-            <option value="availble">Availble</option>
-            <option value="fosterd">Fosterd</option>
-            <option value="adopted">Adopted</option>
+            <option value="Availble">Availble</option>
+            <option value="Fosterd">Fosterd</option>
+            <option value="Adopted">Adopted</option>
          </Form.Select>
          <Form.Label>Height:</Form.Label>
          <Form.Control

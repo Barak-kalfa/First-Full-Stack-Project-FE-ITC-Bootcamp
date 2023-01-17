@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { usePetContext } from "../../context/PetsContext";
 import MessageModal from "../MessageModal/MessageModal";
 import "./SearchBar.css";
@@ -11,41 +11,30 @@ function SearchBar() {
    const [showFilter, setShowFilter] = useState(false);
    const [query, setQuery] = useState("");
    const { getSearchPets } = usePetContext();
-   const searchFilter = {
+   const [searchFilter, setSearchFilter] = useState({
       type: "",
-      name: true,
+      name: "",
       weight: "",
       height: "",
       adoptionStatus: "",
-   };
+   });
 
    const handleFilter = (e) => {
-      switch (e.target.name) {
-         case "type":
-            searchFilter.type = e.target.value;
-            break;
-         case "name":
-            searchFilter.name = !searchFilter.name;
-            break;
-         case "weight":
-            searchFilter.weight = !searchFilter.weight;
-            break;
-         case "height":
-            searchFilter.height = !searchFilter.height;
-            break;
-         case "adoptionStatus":
-            searchFilter.adoptionStatus = e.target.value;
-            break;
-         }
-      console.log(searchFilter);
+      if (searchFilter[e.target.name] === e.target.value) {
+         setSearchFilter({ ...searchFilter, [e.target.name]: "" });
+      } else {
+         setSearchFilter({ ...searchFilter, [e.target.name]: e.target.value });
+      }
    };
+   useEffect(() => {
+      console.log(searchFilter);
+   });
 
    const handleQuery = async (e) => {
       const searchInput = { searchText: query, searchFields: searchFilter };
       e.preventDefault();
       const res = await getSearchPets(searchInput);
-      console.log(res);
-      if (!res && query !== '') {
+      if (!res && query !== "") {
          setMessage("No Maching Results");
          handleShow();
       }
@@ -63,11 +52,15 @@ function SearchBar() {
             <div className="search-box">
                <input
                   type="text"
-                  placeholder="Search Pet"
+                  placeholder="Enter Search..."
                   onChange={(e) => setQuery(e.target.value)}
                   className="search-input"
                />
-               <select className="type-input" name="type" onChange={handleFilter}>
+               <select
+                  className="type-input"
+                  name="type"
+                  onChange={handleFilter}
+               >
                   <option value="" defaultValue>
                      Type
                   </option>
@@ -89,28 +82,49 @@ function SearchBar() {
                         name="name"
                         value="name"
                         onClick={handleFilter}
-                        defaultChecked
+                        defaultChecked={searchFilter.name}
                      />
-                     |<label htmlFor="weight"> Weight</label>
+                     |<label htmlFor="weight"> Weight (Kg)</label>
                      <input
                         type="checkbox"
                         name="weight"
                         value="weight"
                         onClick={handleFilter}
+                        defaultChecked={searchFilter.weight}
                      />
-                     |<label htmlFor="height"> Height</label>
+                     |<label htmlFor="height"> Height (Cm)</label>
                      <input
                         type="checkbox"
                         name="height"
                         value="height"
                         onClick={handleFilter}
+                        defaultChecked={searchFilter.height}
                      />
                      |<label htmlFor="adoptionStatus"> Adoption Status</label>
                      <select name="adoptionStatus" onChange={handleFilter}>
-                        <option value="">All</option>
-                        <option value="Availble">Availble</option>
-                        <option value="Fostered">Fostered</option>
-                        <option value="Adopted">Adopted</option>
+                        <option 
+                        value="" 
+                        selected={searchFilter.adoptionStatus}>
+                           All
+                        </option>
+                        <option
+                           value="Availble"
+                           selected={searchFilter.adoptionStatus}
+                        >
+                           Availble
+                        </option>
+                        <option
+                           selected={searchFilter.adoptionStatus}
+                           value="Fostered"
+                        >
+                           Fostered
+                        </option>
+                        <option
+                           value="Adopted"
+                           selected={searchFilter.adoptionStatus}
+                        >
+                           Adopted
+                        </option>
                      </select>
                   </div>
                )}

@@ -4,6 +4,7 @@
    height: 70%;
    border-radius: 15px;
     cursor: pointer;
+    margin-bottom: 5px;
 }
 
 .pet-modal-card {
