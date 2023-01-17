@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { usePetContext } from "../../../context/PetsContext";
 import { AppContext } from "../../App/App";
-import "./addPet.css"
+import "./addPet.css";
 
 function AddPetForm({ setShow }) {
    const { addPet } = usePetContext();
@@ -25,6 +25,8 @@ function AddPetForm({ setShow }) {
 
    const handlePetInfo = (e) => {
       setPetInfo({ ...petInfo, [e.target.name]: e.target.value });
+
+      console.log(e.target.value);
    };
    const handlePetPicture = (e) => {
       setPetPicture(e.target.files[0]);
@@ -36,9 +38,12 @@ function AddPetForm({ setShow }) {
          const petData = new FormData();
          petData.append("petPicture", petPicture);
          for (let key in petInfo) petData.append(key, petInfo[key]);
-         const res = await axios.post("http://localhost:8080/pets", petData);
+         const res = await axios.post("http://localhost:8080/pets", petData, {
+            withCredentials: true,
+         });
+         console.log("add pet", res);
          addPet(res.data);
-         setShow(false)
+         setShow(false);
       } catch (err) {
          console.log(err.message);
       }
@@ -46,6 +51,7 @@ function AddPetForm({ setShow }) {
 
    return (
       <Form className="add-pet-form" onSubmit={handleSubmit}>
+         <Form.Label>Type of Animal:*</Form.Label>
          <Form.Select
             aria-label="Type "
             placeholder="Enter Name..."
@@ -67,14 +73,19 @@ function AddPetForm({ setShow }) {
             className="petInput"
             name="name"
          />
-         <Form.Label>Adoption Status:</Form.Label>
-         <Form.Control
-            placeholder="Enter Adoption Status..."
+         <Form.Label>Adoption Status:*</Form.Label>
+         <Form.Select
+            aria-label="Adoption Status"
             onChange={handlePetInfo}
             value={petInfo.adoptionStatus}
-            className="petInput"
             name="adoptionStatus"
-         />
+            className="petInput"
+         >
+            <option>Adoption Status ?</option>
+            <option value="availble">Availble</option>
+            <option value="fosterd">Fosterd</option>
+            <option value="adopted">Adopted</option>
+         </Form.Select>
          <Form.Label>Height:</Form.Label>
          <Form.Control
             placeholder="Enter Height..."
@@ -82,6 +93,7 @@ function AddPetForm({ setShow }) {
             value={petInfo.height}
             className="petInput"
             name="height"
+            type="integer"
          />
          <Form.Label>Weight:</Form.Label>
          <Form.Control
@@ -90,6 +102,7 @@ function AddPetForm({ setShow }) {
             value={petInfo.weight}
             className="petInput"
             name="weight"
+            type="integer"
          />
          <Form.Label>Color:</Form.Label>
          <Form.Control
@@ -108,16 +121,19 @@ function AddPetForm({ setShow }) {
             name="bio"
             as="textarea"
          />
+         <Form.Label>Hypoallergenic?</Form.Label>
          <Form.Select
             aria-label="Hypoallergenic"
             onChange={handlePetInfo}
             value={petInfo.hypoallerganic}
             name="hypoallerganic"
             className="petInput"
+            type="boolean"
          >
             <option>Is Hypoallergenic ?</option>
-            <option value={1}>Yes</option>
-            <option value={0}>No</option>
+            <option>?</option>
+            <option value={true}>Yes</option>
+            <option value={false}>No</option>
          </Form.Select>
          <Form.Label>Dietary Restrictions:</Form.Label>
          <Form.Control
@@ -143,9 +159,9 @@ function AddPetForm({ setShow }) {
             name="picture"
             className="petInput"
          />
-         <Button variant="primary" type="submit">
+         <button variant="primary" type="submit">
             Submit
-         </Button>
+         </button>
       </Form>
    );
 }

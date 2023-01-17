@@ -11,8 +11,6 @@ function LandingPage() {
             <img src="http://localhost:8080/petPicture-1673341023856-790645047.jpg" />
          </div>
          <div className="content-box">
-            <h1>Its Simple </h1>
-            <h1>Pets + People = Fun!</h1>
             <div className="buttons-box">
                <LoginModal />
                <RegistrationAlert />

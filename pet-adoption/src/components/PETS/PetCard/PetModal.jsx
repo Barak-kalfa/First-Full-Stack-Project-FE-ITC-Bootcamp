@@ -6,6 +6,7 @@ import FosterButton from "./FosterButton";
 import PetInfoModal from "./PetInfoModal";
 import { PetContext } from "./PetCard";
 import { useContext, useEffect, useState } from "react";
+import "../Pets.css";
 
 import { Button, Modal } from "react-bootstrap";
 import { useUsersContext } from "../../../context/UsersContext";
@@ -39,17 +40,26 @@ function PetModal() {
                <img className="pet-img-modal" src={pet.picture} />
                <div className="pet-card-menu">
                   <h1 className="pet-name">{pet.name}</h1>
+                  <WishListButton />
                   <div>
-                     {pet.adoptionStatus}
-                     {isOwner && <p>By You!</p>}
+                     {isOwner ? `${pet.adoptionStatus} By You!` : pet.adoptionStatus}
                   </div>
-                  <div className="d-flex gap-3">
-                     {!pet.ownerId && <AdoptButton />}
-                     {!pet.fosterId && !pet.ownerId && <FosterButton />}
-                     {isOwner && <ReturnPetButton />}
-                     <WishListButton />
-                     <PetInfoModal />
-                     {currentUser?.isAdmin && <EditPetModal />}
+                  <div className="d-flex">
+                     <div className="button-box">
+                        {!pet.ownerId && <AdoptButton />}
+                     </div>
+                     <div className="button-box">
+                        {!pet.fosterId && !pet.ownerId && <FosterButton />}
+                     </div>
+                     <div className="button-box">
+                        <PetInfoModal />
+                     </div>
+                     <div className="button-box">
+                        {isOwner && <ReturnPetButton />}
+                     </div>
+                     <div className="button-box">
+                        {currentUser?.isAdmin && <EditPetModal />}
+                     </div>
                   </div>
                </div>
             </div>

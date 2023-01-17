@@ -34,9 +34,9 @@ function ReturnPetButton() {
 
      return (
           <div>
-               <Button variant="danger" onClick={returnPet}>
-                    Return {pet.name}
-               </Button>
+               <button className="pet-return-button" onClick={returnPet}>
+                    Return
+               </button>
           </div>
      );
 }

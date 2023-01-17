@@ -49,9 +49,9 @@ function SignUpModal() {
 
    return (
       <>
-         <Button className="signup-button" onClick={handleShow}>
+         <button className="signup-button" onClick={handleShow}>
             Sign Up
-         </Button>
+         </button>
 
          <Modal show={show} onHide={handleClose}>
             <Card className=" SignUp">

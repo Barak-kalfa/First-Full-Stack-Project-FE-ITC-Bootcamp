@@ -6,8 +6,8 @@
 }
 
 .landing-page-header{
-          background-color: #f8e92c;
-     height: 8rem;
+   background-color: #f8e92c;
+     height: 10rem;
      width: 100%;
      box-shadow: 0px 6px 18px rgba(0, 0, 0, 1.38);
      font-family: 'Lobster', cursive;
@@ -60,10 +60,11 @@
 .buttons-box {
    display: flex;
    justify-content: space-between;
-   gap: 1rem
+   gap: 1rem;
 }
 
 .search-alert-button {
+   width: auto;
    color: rgb(0, 0, 0);
    font-size: 35px;
    line-height: 16px;
@@ -80,14 +81,9 @@ background-color: #0081C9;
    border: 2px solid rgb(28, 110, 164);
    display: inline-block;
 }
-.myButton:hover {
-   background: #1c6ea4;
-}
-.myButton:active {
-   background: #144e75;
-}
 
 .signup-button {
+    width: auto;
    color: rgb(0, 0, 0);
    font-size: 35px;
    line-height: 16px;
@@ -104,14 +100,9 @@ background-color: #0081C9;
    border: 2px solid rgb(28, 110, 164);
    display: inline-block;
 }
-.myButton:hover {
-   background: #1c6ea4;
-}
-.myButton:active {
-   background: #144e75;
-}
 
-.login-button {
+.login-button{
+   width: auto;
    color: rgb(0, 0, 0);
    font-size: 35px;
    line-height: 16px;
@@ -126,13 +117,7 @@ background-color: #0081C9;
 background-color: #0081C9;
    box-shadow: rgba(0, 0, 0, 0.57) 7px 10px 6px 2px;
    border: 2px solid rgb(28, 110, 164);
-   display: inline-block;
-}
-.myButton:hover {
-   background: #1c6ea4;
-}
-.myButton:active {
-   background: #144e75;
+ 
 }
 
 .content-box h1{

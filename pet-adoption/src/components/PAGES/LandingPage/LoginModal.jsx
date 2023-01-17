@@ -43,9 +43,9 @@ function LoginModal() {
 
    return (
       <>
-         <Button className="login-button" onClick={handleShow}>
+         <button className="login-button" onClick={handleShow}>
             Login
-         </Button>
+         </button>
 
          <Modal show={show} onHide={handleClose}>
             <Card className=" Login">

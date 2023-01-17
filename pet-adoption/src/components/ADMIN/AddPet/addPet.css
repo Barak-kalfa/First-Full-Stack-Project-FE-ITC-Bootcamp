@@ -4,6 +4,10 @@
 .add-pet-form{
      margin: 10px;
 }
+.edit-pet-form{
+     padding: 2rem;
+     font-weight: bold;
+}
 .petInput{
      margin: 8px;
      padding: 10px;

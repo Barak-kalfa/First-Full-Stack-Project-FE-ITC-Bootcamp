@@ -4,7 +4,7 @@ function Footer() {
   return (
     <div
      className="Footer">
-      <span>Barak Kalfa & ITC </span>
+      <span> </span>
      </div>
   )
 }

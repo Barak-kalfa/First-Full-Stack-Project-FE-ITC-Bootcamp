@@ -43,9 +43,9 @@ export default function RegistrationAlert() {
                We just wanted to let you know that only signed up users can
                adopt and foster pets
             </Modal.Body>
-            <Modal.Footer>
+            <Modal.Footer className="gap-5">
                <Button variant="secondary" onClick={handleClose}>
-                  Ok I'll Sign Up First
+                   Sign Up
                </Button>
                <Button variant="primary" href="/search">
                   Continue To Serach Page

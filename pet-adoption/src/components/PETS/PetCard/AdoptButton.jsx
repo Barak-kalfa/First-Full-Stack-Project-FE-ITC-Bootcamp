@@ -6,6 +6,7 @@ import { AppContext } from "../../App/App";
 import { usePetContext } from "../../../context/PetsContext";
 import { useUsersContext } from "../../../context/UsersContext";
 import PetAlert from "./PetAlert";
+import "../Pets.css";
 
 function AdoptButton() {
    const { petsList, setPetsList } = usePetContext();
@@ -46,11 +47,9 @@ function AdoptButton() {
       }
    };
    return (
-      <div className="adoption-button" onClick={adoptPet}>
+      <button  className="pet-adopt-button" onClick={adoptPet}>Adopt
          <PetAlert show={show} handleClose={handleClose} />
-         <img src="http://localhost:8080/petPicture-1673720944017-915535721.jpg" />
-
-      </div>
+      </button>
    );
 }
 

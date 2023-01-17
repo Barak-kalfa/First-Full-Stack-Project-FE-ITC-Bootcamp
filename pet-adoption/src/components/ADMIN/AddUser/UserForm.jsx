@@ -46,7 +46,7 @@ function UserForm() {
       e.preventDefault();
       const res = await updateUser(userInfo);
       if (res === "Wrong Password") {
-         console.log("xxxxWrong Password");
+         console.log("Wrong Password");
          setMessage(res);
          handleShow();
       } else {

@@ -12,7 +12,10 @@ function MessageModal({ show, setShow, message }) {
 
    return (
       <>
-         <Modal show={show} onHide={handleClose}>
+         <Modal
+          show={show}
+           onHide={handleClose}
+           >
             <Modal.Body>{message}</Modal.Body>
             <Modal.Footer>
                <Button variant="secondary" onClick={handleClose}>

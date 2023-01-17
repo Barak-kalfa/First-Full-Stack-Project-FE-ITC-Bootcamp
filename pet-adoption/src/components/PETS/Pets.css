@@ -12,29 +12,23 @@
    transition: all 0.2s ease-in-out;
 }
 
+/* .pet-modal{
+  background-color: black;
+} */
+
 .pet-modal-content {
    display: flex;
    flex-direction: column;
    justify-content: center;
    align-items: center;
    background-color: #ffffff;
-   padding: 1rem;
+   padding: 3rem;
    border-radius: 15px;
    font-family: "Lilita One", cursive;
    font-size: 2rem;
 }
 
-.pet-info-modal{
-   background-color: #FFFBAC;
-   display: flex;
-   flex-direction: column;
-   font-family: "Lilita One", cursive;
-   border-radius: 15px;
-   border: 20px solid #ffcc37;
-   width: 45rem;
-   height: 90vh;
-   flex-wrap: wrap;
-}
+
 .pet-card-menu {
    display: flex;
    flex-direction: column;
@@ -58,6 +52,10 @@
    transform: scale(1.2);
 }
 
+.button-box{
+   min-width: 5rem;
+
+}
 .adoption-button img{
    width: 6rem;
    height: 6rem;
@@ -67,10 +65,6 @@
 .adoption-button img:hover{
   transform: scale(1.2);
    cursor: pointer;
-}
-.pet-info-button{
-   cursor: pointer;
- transform: scale(1.5);
 }
 
 .edit-pet-button:hover {
@@ -109,6 +103,28 @@ cursor: pointer;
    width: 3rem;
   
 }
+
+.edit-pet-modal{
+   background-color: #ffffff;
+}
+
+.edit-pet-img{
+   width: 100%;
+}
+
+.edit-pet{
+   display: flex;
+   flex-wrap: wrap;
+}
+
+.pet-info-modal{
+display: flex;
+flex-wrap: wrap;
+width: 100%;
+justify-content: space-around;
+padding: 3rem;
+height: 100vh;
+}
 .pet-info{
 
 display: flex;
@@ -131,5 +147,57 @@ flex-wrap: wrap;
    align-items: center;
    flex-direction: column;
   max-width: 400px; 
-  
+  flex-wrap: wrap;
+}
+.pet-modal-right h4{
+   max-width: 400px;
+}
+
+button {
+   color: rgb(0, 0, 0);
+   margin-top: 1rem;
+   width: 4rem;
+   font-size: 14px;
+   line-height: 14px;
+   padding: 10px;
+   border-radius: 13px;
+   font-family: "Lilita One", cursive;
+   font-weight: normal;
+   text-decoration: none;
+   font-style: normal;
+   font-variant: normal;
+   text-transform: none;
+   background-color: #ffcc37;
+   border: none;
+   box-shadow: rgba(0, 0, 0, 0.3) 5px 7px 15px 5px;
+   display: inline-block;
+}
+
+button:hover {
+    transform: scale(1.4);
+   background-color: #FF8B13;
+}
+.pet-edit-button:hover{
+   transform: scale(1.4);
+   background-color: #FF8B13;
+}
+
+.pet-info-button:hover{
+     transform: scale(1.4);
+   background-color: #1C82AD;
+}
+
+.pet-foster-button:hover{
+     transform: scale(1.4);
+   background-color: #ABC270;
+}
+
+.pet-adopt-button:hover{
+     transform: scale(1.4);
+   background-color: #54B435;
+}
+
+.pet-return-button:hover{
+        transform: scale(1.4);
+   background-color: #DC0000;
 }

@@ -5,6 +5,8 @@ import Form from "react-bootstrap/Form";
 import { usePetContext } from "../../../context/PetsContext";
 import { EditPet } from "../../../Models/petsModels";
 import { PetContext } from "../../PETS/PetCard/PetCard";
+import MessageModal from "../../MessageModal/MessageModal";
+import "../../PETS/Pets.css"
 
 function EditPetForm() {
    const [message, setMessage] = useState("");
@@ -26,13 +28,13 @@ function EditPetForm() {
       dietary: "",
       breed: "",
    });
-   useEffect(()=>{
-     setPetInfo(pet)
-   },[])
+   useEffect(() => {
+      setPetInfo(pet);
+   }, []);
    const handlePetInfo = (e) => {
       setPetInfo({ ...petInfo, [e.target.name]: e.target.value });
-       console.log(typeof (e.target.value));
-   }; 
+      console.log(typeof e.target.value);
+   };
    const handlePetPicture = (e) => {
       setPetPicture(e.target.files[0]);
    };
@@ -40,17 +42,19 @@ function EditPetForm() {
       e.preventDefault();
       console.log(petInfo);
       try {
-         // const res = await axios.put(
-         //      "http://localhost:8080/pets/edit",
-         //      petInfo,
-         //      {
-         //       withCredentials: true
-         //      }
-         // );
-         if (true) {
-            const newPetsList = EditPet(petInfo, petsList);
-            setPetsList(newPetsList)
-            console.log(petsList);
+         const res = await axios.put(
+            "http://localhost:8080/pets/edit",
+            petInfo,
+            {
+               withCredentials: true,
+            }
+         );
+         if (res) {
+            // const newPetsList = EditPet(petInfo, petsList);
+            // setPetsList(newPetsList)
+            // console.log(petsList);
+            setMessage("Pet Has Been Updated");
+            handleShow();
          }
       } catch (err) {
          console.log(err.message);
@@ -59,8 +63,8 @@ function EditPetForm() {
 
    return (
       <>
-         <img src={petInfo.picture} />
-         <Form className="add-pet-form" onSubmit={handleSubmit}>
+         <MessageModal show={show} setShow={setShow} message={message} />
+         <Form className="edit-pet-form" onSubmit={handleSubmit}>
             <Form.Label>Name:</Form.Label>
             <Form.Control
                placeholder="Enter Name..."
@@ -70,6 +74,7 @@ function EditPetForm() {
                name="name"
                type="string"
             />
+            <Form.Label>Type:</Form.Label>
             <Form.Select
                aria-label="Type "
                onChange={handlePetInfo}
@@ -83,7 +88,7 @@ function EditPetForm() {
                <option value="cat">Cat</option>
                <option value="other">other</option>
             </Form.Select>
-
+            <Form.Label>Adoption Status:</Form.Label>
             <Form.Select
                aria-label="adoptionStatus "
                onChange={handlePetInfo}
@@ -172,9 +177,9 @@ function EditPetForm() {
                name="picture"
                className="petInput"
             />
-            <Button variant="primary" type="submit">
+            <button variant="primary" type="submit">
                Submit
-            </Button>
+            </button>
          </Form>
       </>
    );

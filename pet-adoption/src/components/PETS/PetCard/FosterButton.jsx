@@ -53,9 +53,9 @@ function FosterButton() {
       <div>
          <PetAlert show={show} handleClose={handleClose} />
 
-         <Button className="FosterButton w-100" onClick={fosterPet}>
+         <button className="pet-foster-button" onClick={fosterPet}>
             Foster
-         </Button>
+         </button>
       </div>
    );
 }
