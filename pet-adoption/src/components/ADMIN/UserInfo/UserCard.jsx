@@ -9,6 +9,7 @@ function UserCard({ user}) {
      return (
           <div className="mb-3">
                <div onClick={() => setShow(true)}>
+                    
                     <span className="me-4">{user.firstName}</span>
                     <span className="me-4">{user.lastName}</span>
                     <span className="me-4">{user.username}</span>
